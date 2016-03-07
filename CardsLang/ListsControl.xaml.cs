@@ -25,20 +25,13 @@ namespace CardsLang
             InitializeComponent();
         }
 
-        public bool Visible { get; private set; }
-
-        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void newList_Click(object sender, RoutedEventArgs e)
+        private void buttonAddList_Click(object sender, RoutedEventArgs e)
         {
             NewSubject _newSubjectWin = new NewSubject();
             var host = new Window();
             host.Content = _newSubjectWin;
             host.Show();
-            this.Visible = false;
+           // this.Visible = false;
             // this.close();
         }
     }

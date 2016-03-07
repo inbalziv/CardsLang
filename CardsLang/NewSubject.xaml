@@ -13,11 +13,14 @@
             <Grid.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionColorKey}}"/>
             </Grid.Background>
-            <Label x:Name="labelSubject" Content="Subject" HorizontalAlignment="Left" Height="23" Margin="10,19,0,0" VerticalAlignment="Top" Width="66"/>
-            <TextBox x:Name="textBoxSubject" HorizontalAlignment="Left" Height="23" Margin="147,19,0,0" TextWrapping="Wrap" Text="Write Subject" VerticalAlignment="Top" Width="120"/>
-            <Button x:Name="buttonAddCard" Content="Add Card" HorizontalAlignment="Left" Height="21" Margin="197,67,0,0" VerticalAlignment="Top" Width="80" Click="buttonAddCard_Click"/>
-            <TextBox x:Name="textBoxFront" HorizontalAlignment="Left" Height="18" Margin="30,107,0,0" TextWrapping="Wrap" Text="Front" VerticalAlignment="Top" Width="117" TextChanged="textBoxFront_TextChanged"/>
-            <TextBox x:Name="textBox_Back" HorizontalAlignment="Left" Height="18" Margin="169,107,0,0" TextWrapping="Wrap" Text="Back" VerticalAlignment="Top" Width="108" TextChanged="textBox_Back_TextChanged"/>
+            <Label x:Name="labelSubject" Content="Subject" HorizontalAlignment="Left" Height="23" Margin="51,19,0,0" VerticalAlignment="Top" Width="66"/>
+            <TextBox x:Name="textBoxSubject" HorizontalAlignment="Left" Height="23" Margin="147,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Button x:Name="buttonAddCard" Content="Add Card" HorizontalAlignment="Left" Height="21" Margin="211,60,0,0" VerticalAlignment="Top" Width="65" Click="buttonAddCard_Click"/>
+            <TextBox x:Name="textBoxFront" HorizontalAlignment="Left" Height="18" Margin="10,63,0,0" TextWrapping="Wrap" Text="Front" VerticalAlignment="Top" Width="78" TextChanged="textBoxFront_TextChanged"/>
+            <TextBox x:Name="textBoxBack" HorizontalAlignment="Left" Height="18" Margin="111,63,0,0" TextWrapping="Wrap" Text="Back" VerticalAlignment="Top" Width="78" TextChanged="textBox_Back_TextChanged"/>
+            <ListBox x:Name="listBoxBack" HorizontalAlignment="Left" Height="154" Margin="177,126,0,0" VerticalAlignment="Top" Width="90" SelectionChanged="listBox_SelectionChanged"/>
+            <Label x:Name="labelCount" Content="" HorizontalAlignment="Left" Height="33" Margin="31,149,0,0" VerticalAlignment="Top" Width="28"/>
+            <ListBox x:Name="listBoxFront" HorizontalAlignment="Left" Height="154" Margin="64,126,0,0" VerticalAlignment="Top" Width="90" SelectionChanged="listBoxFront_SelectionChanged"/>
 
         </Grid>
 

@@ -57,6 +57,9 @@
     </ApplicationDefinition>
     <Compile Include="Card.cs" />
     <Compile Include="CardsList.cs" />
+    <Compile Include="ListsControl.xaml.cs">
+      <DependentUpon>ListsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WriteToFile.cs" />
     <Page Include="ListsControl.xaml">
       <SubType>Designer</SubType>
@@ -69,9 +72,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ListsControl.xaml.cs">
-      <DependentUpon>ListsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

@@ -9,11 +9,8 @@
       Title="ListsControl">
 
     <Grid>
-        <Grid>
-            <Button x:Name="newList" Content="Add new list" HorizontalAlignment="Left" Height="18.292" Margin="28.537,95.854,0,0" VerticalAlignment="Top" Width="85.609" Click="newList_Click"/>
-            <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="18" Margin="144,96,0,0" VerticalAlignment="Top" Width="108" SelectionChanged="listBox_SelectionChanged"/>
-
-        </Grid>
+        <Button x:Name="buttonAddList" Content="Add list" HorizontalAlignment="Left" Height="28" Margin="30,111,0,0" VerticalAlignment="Top" Width="100" Click="buttonAddList_Click"/>
+        <TextBox x:Name="textBoxListName" HorizontalAlignment="Left" Height="28" Margin="166,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="107"/>
 
     </Grid>
 </Page>
