@@ -28,11 +28,22 @@ namespace CardsLang
         private void buttonAddList_Click(object sender, RoutedEventArgs e)
         {
             NewSubject _newSubjectWin = new NewSubject();
-            var host = new Window();
-            host.Content = _newSubjectWin;
-            host.Show();
-           // this.Visible = false;
-            // this.close();
+
+            if (textBoxListName.ToString().Trim() != "")
+            {
+                 var host = new Window();
+                 host.Content = _newSubjectWin;
+                 host.Show();
+                 _newSubjectWin.textBoxSubject.Text = textBoxListName.Text.ToString().Trim();
+                
+            }
+
+
+        }
+
+        private void textBoxListName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

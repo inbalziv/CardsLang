@@ -45,13 +45,13 @@ namespace CardsLang
         
         private void addCard(string front, string back)
         {
-            //add card to list
-            List<Card> _card = new List<Card>();
+            //add card to list insubject
+           // List<Card> _card = new List<Card>();
            // _card.Add(new Card { Age = 25, FirstName = "Alex", LastName = "Johnson" });
         }
         private void updateCard(string front, string back)
         {
-            //search the card 
+            //search the card in subject
             //update card value
         }
         private void clearTextbox()

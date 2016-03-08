@@ -10,7 +10,7 @@
 
     <Grid>
         <Button x:Name="buttonAddList" Content="Add list" HorizontalAlignment="Left" Height="28" Margin="30,111,0,0" VerticalAlignment="Top" Width="100" Click="buttonAddList_Click"/>
-        <TextBox x:Name="textBoxListName" HorizontalAlignment="Left" Height="28" Margin="166,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="107"/>
+        <TextBox x:Name="textBoxListName" HorizontalAlignment="Left" Height="28" Margin="166,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="107" TextChanged="textBoxListName_TextChanged"/>
 
     </Grid>
 </Page>

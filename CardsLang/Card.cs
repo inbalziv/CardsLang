@@ -8,8 +8,19 @@ namespace CardsLang
 {
     public class Card
     {
-        private string _front { get; set; }
-        private string _back { get; set; }
+        public string _front { get; set; }
+        public string _back { get; set; }
+
+        public Card(string front, string back)
+        {
+            this._front = front;
+            this._back = back;
+        }
+        public Card(Card card)
+        {
+            this._front = card._front;
+            this._back = card._back;
+        }
     }
 
 }
