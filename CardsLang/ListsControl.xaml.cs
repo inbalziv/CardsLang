@@ -29,13 +29,17 @@ namespace CardsLang
         {
             NewSubject _newSubjectWin = new NewSubject();
 
-            if (textBoxListName.ToString().Trim() != "")
+            if (textBoxListName.Text.ToString().Trim() != "")
             {
                  var host = new Window();
                  host.Content = _newSubjectWin;
                  host.Show();
                  _newSubjectWin.textBoxSubject.Text = textBoxListName.Text.ToString().Trim();
                 
+            }
+            else
+            {
+                //Add error message
             }
 
 

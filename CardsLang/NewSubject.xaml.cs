@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Drawing;
+
 
 
 namespace CardsLang
@@ -22,11 +24,12 @@ namespace CardsLang
     public partial class NewSubject : Page
     {
         private int _cardsNum = 0;
-        
+        List<Card> _cards = new List<Card>();
         public NewSubject()
         {
             InitializeComponent();            
             _cardsNum = 0;
+            listBoxBack.SelectionMode = SelectionMode.Single;
             labelCount.Content = _cardsNum.ToString();
 
         }
@@ -38,16 +41,18 @@ namespace CardsLang
             
             handleCard(textBoxFront.Text.ToString(), textBoxBack.Text.ToString(),true);            
             _cardsNum++;
-            labelCount.Content = _cardsNum.ToString();                
-            
+            labelCount.Content = _cardsNum.ToString();
+            listBoxBack.DataContext = _cards;
+
+
         }
 
         
         private void addCard(string front, string back)
         {
-            //add card to list insubject
+            //add card to list in subject
            // List<Card> _card = new List<Card>();
-           // _card.Add(new Card { Age = 25, FirstName = "Alex", LastName = "Johnson" });
+            _cards.Add(new Card(front, back ));
         }
         private void updateCard(string front, string back)
         {
@@ -60,10 +65,7 @@ namespace CardsLang
             textBoxBack.Text = "";
         }
 
-        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        
         private void handleCard(string front, string back, bool isNew)
         {
             string _front;
@@ -115,7 +117,29 @@ namespace CardsLang
 
         private void listBoxFront_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            int _index;
+            _index = this.listBoxFront.SelectedIndex;            
+            this.textBoxFront.Text = listBoxFront.SelectedValue.ToString();
+            this.textBoxBack.Text = listBoxBack.Items[_index].ToString();
+            listBoxBack.SelectedIndex = _index;
 
+
+        }
+        //listboc back
+        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int _index;
+            _index = this.listBoxBack.SelectedIndex;
+            this.textBoxBack.Text = listBoxBack.SelectedValue.ToString();
+            this.textBoxFront.Text = listBoxFront.Items[_index].ToString();
+            listBoxFront.SelectedIndex = _index;
+            listBoxFront.UnfocusedHighlightBackgroundColor = Color.Red;
+        }
+
+        private void buttonDone_Click(object sender, RoutedEventArgs e)
+        {
+
+            
         }
     }
     
