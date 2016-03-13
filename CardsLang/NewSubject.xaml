@@ -21,7 +21,7 @@
             <ListBox x:Name="listBoxBack" HorizontalAlignment="Left" Height="154" Margin="111,124,0,0" VerticalAlignment="Top" Width="90" SelectionChanged="listBox_SelectionChanged"/>
             <Label x:Name="labelCount" Content="" HorizontalAlignment="Left" Height="33" Margin="31,149,0,0" VerticalAlignment="Top" Width="28"/>
             <ListBox x:Name="listBoxFront" HorizontalAlignment="Left" Height="154" Margin="21,124,0,0" VerticalAlignment="Top" Width="90" SelectionChanged="listBoxFront_SelectionChanged"/>
-            <Button x:Name="buttonDelete" Content="Delete" HorizontalAlignment="Left" Height="22" Margin="213,86,0,0" VerticalAlignment="Top" Width="63" RenderTransformOrigin="1.714,-0.364"/>
+            <Button x:Name="buttonDelete" Content="Delete" HorizontalAlignment="Left" Height="22" Margin="213,86,0,0" VerticalAlignment="Top" Width="63" RenderTransformOrigin="1.714,-0.364" Click="buttonDelete_Click"/>
             <Button x:Name="buttonDone" Content="Done" HorizontalAlignment="Left" Margin="237,258,0,0" VerticalAlignment="Top" Width="39" RenderTransformOrigin="-0.051,0.05" Click="buttonDone_Click"/>
             <Button x:Name="buttonUpdateCard" Content="Update" HorizontalAlignment="Left" Height="21" Margin="214,117,0,0" VerticalAlignment="Top" Width="62" Click="buttonUpdateCard_Click"/>
 

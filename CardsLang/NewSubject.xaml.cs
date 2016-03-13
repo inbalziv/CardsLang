@@ -34,6 +34,7 @@ namespace CardsLang
             listBoxBack.SelectionMode = SelectionMode.Single;
             labelCount.Content = _cardsNum.ToString();
             buttonUpdateCard.Visibility = Visibility.Hidden;
+            buttonDelete.Visibility = Visibility.Hidden;
 
         }
 
@@ -80,6 +81,19 @@ namespace CardsLang
                     updateBoxList(_frontUpdate, _backUpdate, _indexUpdate);
                     clearTextbox();
                 }
+            }
+        }
+        private void deleteCard()
+        {
+            int _indexDelete = listBoxFront.SelectedIndex;
+            if (_indexDelete > -1)
+            {
+                _cards.RemoveAt(_indexDelete);
+                _cardsNum = _cardsNum--;
+                listBoxFront.Items.RemoveAt(_indexDelete);
+                listBoxBack.Items.RemoveAt(_indexDelete);
+                clearTextbox();
+                
             }
         }
         private void clearTextbox()
@@ -160,6 +174,7 @@ namespace CardsLang
                 listBoxFront.SelectedIndex = _index;
                 buttonAddCard.Visibility = Visibility.Hidden;
                 buttonUpdateCard.Visibility = Visibility.Visible;
+                buttonDelete.Visibility = Visibility.Visible;
             }
 
 
@@ -177,6 +192,17 @@ namespace CardsLang
             
             updateCard(textBoxFront.Text.ToString(), textBoxBack.Text.ToString());
             listBoxBack.DataContext = _cards;
+            buttonAddCard.Visibility = Visibility.Visible;
+            buttonUpdateCard.Visibility = Visibility.Hidden;
+        }
+
+        private void buttonDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+            deleteCard();
+            buttonDelete.Visibility = Visibility.Hidden;
+            buttonAddCard.Visibility = Visibility.Visible;
+            buttonUpdateCard.Visibility = Visibility.Hidden;
         }
     }
     
