@@ -26,7 +26,7 @@ namespace CardsLang
     {
         private int _cardsNum = 0;
         List<Card> _cards = new List<Card>();
-        
+        int _selectedIndex = -1;
         public NewSubject()
         {
             InitializeComponent();            
@@ -42,7 +42,7 @@ namespace CardsLang
         private void buttonAddCard_Click(object sender, RoutedEventArgs e)
         {
             
-            handleCard(textBoxFront.Text.ToString(), textBoxBack.Text.ToString(),true);            
+            addNewCard(textBoxFront.Text.ToString(), textBoxBack.Text.ToString());            
             _cardsNum++;
             labelCount.Content = _cardsNum.ToString();
             listBoxBack.DataContext = _cards;
@@ -60,19 +60,26 @@ namespace CardsLang
         private void updateCard(string frontUpdate, string backUpdate)
         {
             int _indexUpdate;
-            //search the card in subject
-            Card _card = new Card(frontUpdate, backUpdate);
-            _indexUpdate = _cards.BinarySearch(_card);
-            if (_indexUpdate > 0)
+
+            if (isCardValid(frontUpdate, backUpdate))
             {
-                
-                _cards[_indexUpdate]._front = frontUpdate;
-                _cards[_indexUpdate]._back = backUpdate;
-                //update card value, 
-               // _cards.RemoveAt(_indexUpdate);
-                //maybe update values ??
-              //  _cards.Insert(_indexUpdate, _card);
-               
+                string _frontUpdate = frontUpdate.Trim();
+                string _backUpdate = backUpdate.Trim();
+                Card _card = new Card(_frontUpdate, _backUpdate);
+                _indexUpdate = listBoxFront.SelectedIndex;
+
+                if (_indexUpdate > -1)
+                {
+                    if ((_cards[_indexUpdate]._front != _frontUpdate) && (_cards[_indexUpdate]._back != _backUpdate))
+                    _cards[_indexUpdate]._front = _frontUpdate;
+                    _cards[_indexUpdate]._back = _backUpdate;
+                    //update card value, 
+                    // _cards.RemoveAt(_indexUpdate);
+                    //maybe update values ??
+                    //  _cards.Insert(_indexUpdate, _card);
+                    updateBoxList(_frontUpdate, _backUpdate, _indexUpdate);
+                    clearTextbox();
+                }
             }
         }
         private void clearTextbox()
@@ -82,7 +89,7 @@ namespace CardsLang
         }
 
         
-        private void handleCard(string front, string back, bool isNew)
+        private void addNewCard(string front, string back)
         {
             string _front;
             string _back;
@@ -90,20 +97,12 @@ namespace CardsLang
             {
                 _front = front.Trim();
                 _back = back.Trim();
-                if (isNew)
-                {
-                    addCard(_front, _back);
-                    addCardToBoxList(_front, _back);
-                }
-                else
-                {
-                    updateCard(_front, _back);
-                    updateBoxList(_front, _back);
-
-                }
+                addCard(_front, _back);
+                addCardToBoxList(_front, _back);                
                 clearTextbox();
             }
         }
+         
         private void addCardToBoxList(string front, string back)
         {
             
@@ -111,9 +110,14 @@ namespace CardsLang
             this.listBoxBack.Items.Add(back);
 
         }
-        private void updateBoxList(string front, string back)
+        private void updateBoxList(string front, string back, int index)
         {
-
+            if ((listBoxFront.Items.Count >= index) && (listBoxBack.Items.Count >= index) && (index > 0))                
+            {
+                _selectedIndex = index;
+                listBoxFront.Items[_selectedIndex] = front;
+                listBoxBack.Items[_selectedIndex] = back;
+            }
         }
         private bool isCardValid(string front, string back)
         {
@@ -134,11 +138,13 @@ namespace CardsLang
         private void listBoxFront_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int _index;
-            _index = this.listBoxFront.SelectedIndex;            
-            this.textBoxFront.Text = listBoxFront.SelectedValue.ToString();
-            this.textBoxBack.Text = listBoxBack.Items[_index].ToString();
-            listBoxBack.SelectedIndex = _index;
-
+            _index = this.listBoxFront.SelectedIndex;
+            if (_index > -1)
+            {                              
+                this.textBoxFront.Text = listBoxFront.SelectedValue.ToString();
+                this.textBoxBack.Text = listBoxBack.Items[_index].ToString();
+                
+            }
 
         }
         //listbox back
@@ -147,11 +153,14 @@ namespace CardsLang
             int _index;
             
             _index = this.listBoxBack.SelectedIndex;
-            this.textBoxBack.Text = listBoxBack.SelectedValue.ToString();
-            this.textBoxFront.Text = listBoxFront.Items[_index].ToString();
-            listBoxFront.SelectedIndex = _index;
-            buttonAddCard.Visibility = Visibility.Hidden;
-            buttonUpdateCard.Visibility = Visibility.Visible;
+            if (_index > -1)
+            {
+                this.textBoxBack.Text = listBoxBack.SelectedValue.ToString();
+                this.textBoxFront.Text = listBoxFront.Items[_index].ToString();
+                listBoxFront.SelectedIndex = _index;
+                buttonAddCard.Visibility = Visibility.Hidden;
+                buttonUpdateCard.Visibility = Visibility.Visible;
+            }
 
 
 
@@ -165,7 +174,9 @@ namespace CardsLang
 
         private void buttonUpdateCard_Click(object sender, RoutedEventArgs e)
         {
-
+            
+            updateCard(textBoxFront.Text.ToString(), textBoxBack.Text.ToString());
+            listBoxBack.DataContext = _cards;
         }
     }
     
