@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -25,12 +26,14 @@ namespace CardsLang
     {
         private int _cardsNum = 0;
         List<Card> _cards = new List<Card>();
+        
         public NewSubject()
         {
             InitializeComponent();            
             _cardsNum = 0;
             listBoxBack.SelectionMode = SelectionMode.Single;
             labelCount.Content = _cardsNum.ToString();
+            buttonUpdateCard.Visibility = Visibility.Hidden;
 
         }
 
@@ -51,13 +54,26 @@ namespace CardsLang
         private void addCard(string front, string back)
         {
             //add card to list in subject
-           // List<Card> _card = new List<Card>();
+            
             _cards.Add(new Card(front, back ));
         }
-        private void updateCard(string front, string back)
+        private void updateCard(string frontUpdate, string backUpdate)
         {
+            int _indexUpdate;
             //search the card in subject
-            //update card value
+            Card _card = new Card(frontUpdate, backUpdate);
+            _indexUpdate = _cards.BinarySearch(_card);
+            if (_indexUpdate > 0)
+            {
+                
+                _cards[_indexUpdate]._front = frontUpdate;
+                _cards[_indexUpdate]._back = backUpdate;
+                //update card value, 
+               // _cards.RemoveAt(_indexUpdate);
+                //maybe update values ??
+              //  _cards.Insert(_indexUpdate, _card);
+               
+            }
         }
         private void clearTextbox()
         {
@@ -125,21 +141,31 @@ namespace CardsLang
 
 
         }
-        //listboc back
+        //listbox back
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int _index;
+            
             _index = this.listBoxBack.SelectedIndex;
             this.textBoxBack.Text = listBoxBack.SelectedValue.ToString();
             this.textBoxFront.Text = listBoxFront.Items[_index].ToString();
             listBoxFront.SelectedIndex = _index;
-            listBoxFront.UnfocusedHighlightBackgroundColor = Color.Red;
-        }
+            buttonAddCard.Visibility = Visibility.Hidden;
+            buttonUpdateCard.Visibility = Visibility.Visible;
 
+
+
+        }
+        
         private void buttonDone_Click(object sender, RoutedEventArgs e)
         {
 
             
+        }
+
+        private void buttonUpdateCard_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
     

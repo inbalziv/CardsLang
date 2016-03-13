@@ -60,6 +60,9 @@
     <Compile Include="ListsControl.xaml.cs">
       <DependentUpon>ListsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Study.xaml.cs">
+      <DependentUpon>Study.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WriteToFile.cs" />
     <Page Include="ListsControl.xaml">
       <SubType>Designer</SubType>
@@ -78,6 +81,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NewSubject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Study.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
