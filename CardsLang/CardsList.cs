@@ -8,10 +8,11 @@ namespace CardsLang
 {
     class CardsList
     {
-        private List<Card> _cards ;
-        string _subject;
+        public List<Card> _cards { get; set; }
+        public string _subject { get; set; }
 
-        private CardsList(string subject)
+
+        public CardsList(string subject)
         {
             this._subject = subject;
             this._cards = new List<Card>();
@@ -21,7 +22,11 @@ namespace CardsLang
         {
             _cards.Add(card);
         }
-        
+        public string getSubject()
+        {
+            return this._subject;
+        }
+
         
 
         //find the card index and update it and returns true if updated

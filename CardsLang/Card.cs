@@ -11,6 +11,8 @@ namespace CardsLang
         public string _front { get; set; }
         public string _back { get; set; }
 
+
+
         public Card(string front, string back)
         {
             this._front = front;

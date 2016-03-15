@@ -25,7 +25,7 @@ namespace CardsLang
     public partial class NewSubject : Page
     {
         private int _cardsNum = 0;
-        List<Card> _cards = new List<Card>();
+        public List<Card> _cards = new List<Card>();
         int _selectedIndex = -1;
         public NewSubject()
         {
@@ -72,14 +72,16 @@ namespace CardsLang
                 if (_indexUpdate > -1)
                 {
                     if ((_cards[_indexUpdate]._front != _frontUpdate) && (_cards[_indexUpdate]._back != _backUpdate))
-                    _cards[_indexUpdate]._front = _frontUpdate;
-                    _cards[_indexUpdate]._back = _backUpdate;
-                    //update card value, 
-                    // _cards.RemoveAt(_indexUpdate);
-                    //maybe update values ??
-                    //  _cards.Insert(_indexUpdate, _card);
-                    updateBoxList(_frontUpdate, _backUpdate, _indexUpdate);
-                    clearTextbox();
+                    {
+                        _cards[_indexUpdate]._front = _frontUpdate;
+                        _cards[_indexUpdate]._back = _backUpdate;
+                        //update card value, 
+                        // _cards.RemoveAt(_indexUpdate);
+                        //maybe update values ??
+                        //  _cards.Insert(_indexUpdate, _card);
+                        updateBoxList(_frontUpdate, _backUpdate, _indexUpdate);
+                        clearTextbox();
+                    }
                 }
             }
         }
@@ -157,7 +159,9 @@ namespace CardsLang
             {                              
                 this.textBoxFront.Text = listBoxFront.SelectedValue.ToString();
                 this.textBoxBack.Text = listBoxBack.Items[_index].ToString();
-                
+                buttonAddCard.Visibility = Visibility.Hidden;
+                buttonUpdateCard.Visibility = Visibility.Visible;
+                buttonDelete.Visibility = Visibility.Visible;
             }
 
         }
@@ -194,6 +198,7 @@ namespace CardsLang
             listBoxBack.DataContext = _cards;
             buttonAddCard.Visibility = Visibility.Visible;
             buttonUpdateCard.Visibility = Visibility.Hidden;
+            buttonDelete.Visibility = Visibility.Hidden;
         }
 
         private void buttonDelete_Click(object sender, RoutedEventArgs e)
