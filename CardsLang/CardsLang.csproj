@@ -63,6 +63,12 @@
     <Compile Include="Study.xaml.cs">
       <DependentUpon>Study.xaml</DependentUpon>
     </Compile>
+    <Compile Include="studyLists.xaml.cs">
+      <DependentUpon>studyLists.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="studyOptions.xaml.cs">
+      <DependentUpon>studyOptions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WriteToFile.cs" />
     <Page Include="ListsControl.xaml">
       <SubType>Designer</SubType>
@@ -85,6 +91,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Study.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="studyLists.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="studyOptions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

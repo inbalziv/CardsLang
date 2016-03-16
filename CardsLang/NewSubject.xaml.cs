@@ -22,8 +22,10 @@ namespace CardsLang
     /// <summary>
     /// Interaction logic for NewSubject.xaml
     /// </summary>
+     
     public partial class NewSubject : Page
     {
+        
         private int _cardsNum = 0;
         public List<Card> _cards = new List<Card>();
         int _selectedIndex = -1;
@@ -31,6 +33,7 @@ namespace CardsLang
         {
             InitializeComponent();            
             _cardsNum = 0;
+            hideListsControl();
             listBoxBack.SelectionMode = SelectionMode.Single;
             labelCount.Content = _cardsNum.ToString();
             buttonUpdateCard.Visibility = Visibility.Hidden;
@@ -38,7 +41,7 @@ namespace CardsLang
 
         }
 
-        public bool Visible { get; private set; }
+        
 
         private void buttonAddCard_Click(object sender, RoutedEventArgs e)
         {
@@ -50,8 +53,11 @@ namespace CardsLang
 
 
         }
+        private void hideListsControl()
+        {
+            //ListsControl.VisibilityProperty = VisibilityProperty.hi
+        }
 
-        
         private void addCard(string front, string back)
         {
             //add card to list in subject
@@ -104,7 +110,7 @@ namespace CardsLang
             textBoxBack.Text = "";
         }
 
-        
+       // public bool Visible { get; private set; }
         private void addNewCard(string front, string back)
         {
             string _front;

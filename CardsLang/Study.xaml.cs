@@ -20,9 +20,29 @@ namespace CardsLang
     /// </summary>
     public partial class Study : Page
     {
-        public Study()
+        public bool _isRandom { get; private set; }
+        public bool _isFrontFirst { get; private set; }
+
+        public Study(bool isRandom, bool isFrontFirst)
         {
             InitializeComponent();
+            this._isRandom = isRandom;
+            this._isFrontFirst = isFrontFirst;
+            startStudy();
+        }
+        private void startStudy()
+        {
+            if (_isRandom)
+                studyRandom();
+            else studyNotRandom();
+        }
+        private void studyRandom()
+        {
+
+        }
+        private void studyNotRandom()
+        {
+
         }
     }
 }
