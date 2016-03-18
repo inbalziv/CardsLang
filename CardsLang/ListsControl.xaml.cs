@@ -22,12 +22,13 @@ namespace CardsLang
     public partial class ListsControl : Page
     {
         // List<CardsList> _cardsList = new List<CardsList>();   
-        public Dictionary<string, List<Card>> _cardsList = new Dictionary<string, List<Card>>();
+        public Dictionary<string, List<Card>> _cardsList { get; set; }
         
         private int _selectedIndex = -1;
         public ListsControl()
         {
             InitializeComponent();
+            _cardsList = new Dictionary<string, List<Card>>();
             buttonUpdate.Visibility = Visibility.Hidden;
             buttonAddList.Visibility = Visibility.Visible;
             buttonEdit.Visibility = Visibility.Hidden;
