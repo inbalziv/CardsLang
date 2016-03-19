@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddLists.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="CardsList.cs" />
     <Compile Include="ListsControl.xaml.cs">

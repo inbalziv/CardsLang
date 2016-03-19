@@ -22,13 +22,15 @@ namespace CardsLang
     public partial class ListsControl : Page
     {
         // List<CardsList> _cardsList = new List<CardsList>();   
-        public Dictionary<string, List<Card>> _cardsList { get; set; }
+        ///   public Dictionary<string, List<Card>> _cardsList { get; set; }
+        
+        AddLists _lists = new AddLists();
         
         private int _selectedIndex = -1;
         public ListsControl()
         {
             InitializeComponent();
-            _cardsList = new Dictionary<string, List<Card>>();
+         ///   _cardsList = new Dictionary<string, List<Card>>();
             buttonUpdate.Visibility = Visibility.Hidden;
             buttonAddList.Visibility = Visibility.Visible;
             buttonEdit.Visibility = Visibility.Hidden;
@@ -37,6 +39,38 @@ namespace CardsLang
 
         private void buttonAddList_Click(object sender, RoutedEventArgs e)
         {
+            string _message;
+            string _textBoxListName = textBoxListName.Text.ToString().Trim();
+            int listCreated = _lists.addList(_textBoxListName);
+
+            NewSubject _newSubjectWin;
+            if (listCreated == 1)
+            {
+                _newSubjectWin = new NewSubject();
+                var host = new Window();
+                host.Content = _newSubjectWin;
+                host.Show();
+
+                _newSubjectWin.textBoxSubject.Text = _textBoxListName;
+
+                // add list name to list box 
+                listBoxLists.Items.Add(_textBoxListName);
+                textBoxListName.Clear();
+            }
+            else
+            {
+                if (listCreated == 0)
+                    _message = "List name already exist, please choose a different name";
+                else
+                {
+                    _message = "Please fill list name";
+                    textBoxListName.Clear();
+                }
+                MessageBox.Show(_message, "Error");
+                
+            }
+            
+            /*
             NewSubject _newSubjectWin = new NewSubject();
             string _textBoxListName = textBoxListName.Text.ToString();
             if (isValidSubject(_textBoxListName))
@@ -67,19 +101,19 @@ namespace CardsLang
                 MessageBox.Show("Please fill list name","Error Message");
             }
 
-
+    */
         }
 
         private void textBoxListName_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
-        private bool isValidSubject(string subject)
+        /*private bool isValidSubject(string subject)
         {
             if (subject.Trim() != "")
                 return true;
             else return false;
-        }
+        } */
         
 
         private void listBoxLists_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -97,18 +131,23 @@ namespace CardsLang
 
         private void buttonUpdate_Click(object sender, RoutedEventArgs e)
         {
-            if (updateListName(textBoxListName.Text.ToString(), listBoxLists.SelectedValue.ToString()))
+            string _updatedName = textBoxListName.Text.ToString();
+            
+            if (_lists.updateListName(_updatedName, listBoxLists.SelectedValue.ToString()))
             {
+                updateBoxList(_updatedName, listBoxLists.SelectedIndex);
+                clearTextbox();
                 // listBoxLists.DataContext = _cards;
                 buttonUpdate.Visibility = Visibility.Hidden;
                 buttonAddList.Visibility = Visibility.Visible;
                 buttonEdit.Visibility = Visibility.Hidden;
                 buttonDelete.Visibility = Visibility.Hidden;
+
             }
-            else MessageBox.Show("Name already exist");
+            else MessageBox.Show("Name is not valid or already exist");
         }
 
-        private bool updateListName(string updatedName, string oldName)
+       /* private bool updateListName(string updatedName, string oldName)
         {
             List<Card> _cards;
             int _indexUpdate;
@@ -134,7 +173,7 @@ namespace CardsLang
                 MessageBox.Show("Name is not valid");
                 return false;
             }
-        }
+        } */
 
         private void updateBoxList(string updatedName, int index)
         {
@@ -169,12 +208,14 @@ namespace CardsLang
         {
             string _removeSubject = listBoxLists.SelectedValue.ToString();
             int _indexDelete = listBoxLists.SelectedIndex;
+
             if (_indexDelete > -1)
             {
-                _cardsList.Remove(_removeSubject);                
-                listBoxLists.Items.RemoveAt(_indexDelete);                
-                clearTextbox();
-
+                if (_lists.deleteCardsList(_removeSubject))
+                {
+                    listBoxLists.Items.RemoveAt(_indexDelete);
+                    clearTextbox();
+                }
             }
         }
     }

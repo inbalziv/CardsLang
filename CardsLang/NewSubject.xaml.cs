@@ -29,19 +29,19 @@ namespace CardsLang
         private int _cardsNum = 0;
         public List<Card> _cards = new List<Card>();
         int _selectedIndex = -1;
+        AddLists _listsBuild = new AddLists();
         public NewSubject()
         {
             InitializeComponent();            
             _cardsNum = 0;
             hideListsControl();
             listBoxBack.SelectionMode = SelectionMode.Single;
-            labelCount.Content = _cardsNum.ToString();
+          //  labelCount.Content = _cardsNum.ToString();
             buttonUpdateCard.Visibility = Visibility.Hidden;
             buttonDelete.Visibility = Visibility.Hidden;
 
         }
-
-        
+           
 
         private void buttonAddCard_Click(object sender, RoutedEventArgs e)
         {
@@ -51,19 +51,19 @@ namespace CardsLang
             labelCount.Content = _cardsNum.ToString();
             listBoxBack.DataContext = _cards;
 
-
         }
         private void hideListsControl()
         {
             //ListsControl.VisibilityProperty = VisibilityProperty.hi
         }
-
+        /*
         private void addCard(string front, string back)
         {
             //add card to list in subject
             
             _cards.Add(new Card(front, back ));
         }
+        
         private void updateCard(string frontUpdate, string backUpdate)
         {
             int _indexUpdate;
@@ -103,14 +103,14 @@ namespace CardsLang
                 clearTextbox();
                 
             }
-        }
+        }  */
         private void clearTextbox()
         {
             textBoxFront.Text = "";
             textBoxBack.Text = "";
         }
 
-       // public bool Visible { get; private set; }
+       
         private void addNewCard(string front, string back)
         {
             string _front;
@@ -119,7 +119,7 @@ namespace CardsLang
             {
                 _front = front.Trim();
                 _back = back.Trim();
-                addCard(_front, _back);
+                _listsBuild.addCard(_front, _back);
                 addCardToBoxList(_front, _back);                
                 clearTextbox();
             }
@@ -199,21 +199,36 @@ namespace CardsLang
 
         private void buttonUpdateCard_Click(object sender, RoutedEventArgs e)
         {
+            string _frontUpdate = textBoxFront.Text.ToString();
+            string _backUpdate = textBoxBack.Text.ToString();
             
-            updateCard(textBoxFront.Text.ToString(), textBoxBack.Text.ToString());
-            listBoxBack.DataContext = _cards;
-            buttonAddCard.Visibility = Visibility.Visible;
-            buttonUpdateCard.Visibility = Visibility.Hidden;
-            buttonDelete.Visibility = Visibility.Hidden;
+            if (isCardValid(_frontUpdate, textBoxBack.Text.ToString()))
+            {
+                int _indexUpdate = listBoxFront.SelectedIndex;
+                if (_listsBuild.updateCard(_frontUpdate, _backUpdate, _indexUpdate))
+                {
+                    listBoxBack.DataContext = _cards;
+                    buttonAddCard.Visibility = Visibility.Visible;
+                    buttonUpdateCard.Visibility = Visibility.Hidden;
+                    buttonDelete.Visibility = Visibility.Hidden;
+                    updateBoxList(_frontUpdate, _backUpdate, _indexUpdate);
+                    clearTextbox();
+                }
+            }
         }
 
         private void buttonDelete_Click(object sender, RoutedEventArgs e)
         {
-
-            deleteCard();
-            buttonDelete.Visibility = Visibility.Hidden;
-            buttonAddCard.Visibility = Visibility.Visible;
-            buttonUpdateCard.Visibility = Visibility.Hidden;
+            int _indexDelete = listBoxFront.SelectedIndex;
+            if (_listsBuild.deleteCard(_indexDelete))
+            {
+                listBoxFront.Items.RemoveAt(_indexDelete);
+                listBoxBack.Items.RemoveAt(_indexDelete);
+                clearTextbox();
+                buttonDelete.Visibility = Visibility.Hidden;
+                buttonAddCard.Visibility = Visibility.Visible;
+                buttonUpdateCard.Visibility = Visibility.Hidden;
+            }
         }
     }
     
