@@ -11,7 +11,7 @@
     <Grid Background="#FFC5C5C5">
         <CheckBox x:Name="checkBoxRandom" Content="Random" HorizontalAlignment="Left" Height="25" Margin="38,97,0,0" VerticalAlignment="Top" Width="84" IsThreeState="True"/>
         <RadioButton x:Name="radioButtonBack" Content="Back first" HorizontalAlignment="Left" Height="20" Margin="38,205,0,0" VerticalAlignment="Top" Width="84"/>
-        <RadioButton x:Name="radioButtonFront" Content="Front first" HorizontalAlignment="Left" Height="34" Margin="38,171,0,0" VerticalAlignment="Top" Width="84"/>
+        <RadioButton x:Name="radioButtonFront" Content="Front first" HorizontalAlignment="Left" Height="34" Margin="38,171,0,0" VerticalAlignment="Top" Width="84" IsChecked="True"/>
         <Label x:Name="labelOptions" Content="Choose study settings" HorizontalAlignment="Left" Height="31" Margin="38,30,0,0" VerticalAlignment="Top" Width="106"/>
         <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Height="36" Margin="186,225,0,0" VerticalAlignment="Top" Width="71" Click="buttonStart_Click"/>
         <Button x:Name="buttonBack" Content="Back" HorizontalAlignment="Left" Height="29" Margin="38,242,0,0" VerticalAlignment="Top" Width="84"/>

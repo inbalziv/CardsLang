@@ -25,15 +25,18 @@ namespace CardsLang
      
     public partial class NewSubject : Page
     {
-        
-        private int _cardsNum = 0;
-        public List<Card> _cards = new List<Card>();
+       // private Dictionary<string, List<Card>> _cardsList;
+        private List<Card> _cards;
+     //   AddLists _lists = new AddLists();
+        //   public List<Card> _cards = new List<Card>();
         int _selectedIndex = -1;
-        AddLists _listsBuild = new AddLists();
+        private AddLists _listsBuild = new AddLists();
+
         public NewSubject()
         {
-            InitializeComponent();            
-            _cardsNum = 0;
+            InitializeComponent();
+            _cards = new List<Card>();
+
             hideListsControl();
             listBoxBack.SelectionMode = SelectionMode.Single;
           //  labelCount.Content = _cardsNum.ToString();
@@ -47,8 +50,7 @@ namespace CardsLang
         {
             
             addNewCard(textBoxFront.Text.ToString(), textBoxBack.Text.ToString());            
-            _cardsNum++;
-            labelCount.Content = _cardsNum.ToString();
+            
             listBoxBack.DataContext = _cards;
 
         }
@@ -56,16 +58,16 @@ namespace CardsLang
         {
             //ListsControl.VisibilityProperty = VisibilityProperty.hi
         }
-        /*
-        private void addCard(string front, string back)
+        
+    /*    private void addCard(string front, string back)
         {
             //add card to list in subject
             
             _cards.Add(new Card(front, back ));
-        }
+        } */
         
         private void updateCard(string frontUpdate, string backUpdate)
-        {
+        { /*
             int _indexUpdate;
 
             if (isCardValid(frontUpdate, backUpdate))
@@ -89,10 +91,10 @@ namespace CardsLang
                         clearTextbox();
                     }
                 }
-            }
+            } */
         }
         private void deleteCard()
-        {
+        { /*
             int _indexDelete = listBoxFront.SelectedIndex;
             if (_indexDelete > -1)
             {
@@ -102,8 +104,8 @@ namespace CardsLang
                 listBoxBack.Items.RemoveAt(_indexDelete);
                 clearTextbox();
                 
-            }
-        }  */
+            }*/
+        }  
         private void clearTextbox()
         {
             textBoxFront.Text = "";
@@ -119,7 +121,8 @@ namespace CardsLang
             {
                 _front = front.Trim();
                 _back = back.Trim();
-                _listsBuild.addCard(_front, _back);
+                _listsBuild.addCard(_front, _back, textBoxSubject.Text);
+                
                 addCardToBoxList(_front, _back);                
                 clearTextbox();
             }
@@ -196,9 +199,9 @@ namespace CardsLang
 
             
         }
-
+        
         private void buttonUpdateCard_Click(object sender, RoutedEventArgs e)
-        {
+        {/*
             string _frontUpdate = textBoxFront.Text.ToString();
             string _backUpdate = textBoxBack.Text.ToString();
             
@@ -214,11 +217,11 @@ namespace CardsLang
                     updateBoxList(_frontUpdate, _backUpdate, _indexUpdate);
                     clearTextbox();
                 }
-            }
+            } */
         }
 
         private void buttonDelete_Click(object sender, RoutedEventArgs e)
-        {
+        { /*
             int _indexDelete = listBoxFront.SelectedIndex;
             if (_listsBuild.deleteCard(_indexDelete))
             {
@@ -228,8 +231,8 @@ namespace CardsLang
                 buttonDelete.Visibility = Visibility.Hidden;
                 buttonAddCard.Visibility = Visibility.Visible;
                 buttonUpdateCard.Visibility = Visibility.Hidden;
-            }
-        }
+            }*/
+        } 
     }
     
 }

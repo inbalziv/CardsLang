@@ -23,13 +23,14 @@ namespace CardsLang
     {
         // List<CardsList> _cardsList = new List<CardsList>();   
         ///   public Dictionary<string, List<Card>> _cardsList { get; set; }
-        
-        AddLists _lists = new AddLists();
-        
+
+        private AddLists _listsControl = new AddLists();
+
         private int _selectedIndex = -1;
         public ListsControl()
         {
             InitializeComponent();
+            
          ///   _cardsList = new Dictionary<string, List<Card>>();
             buttonUpdate.Visibility = Visibility.Hidden;
             buttonAddList.Visibility = Visibility.Visible;
@@ -41,7 +42,7 @@ namespace CardsLang
         {
             string _message;
             string _textBoxListName = textBoxListName.Text.ToString().Trim();
-            int listCreated = _lists.addList(_textBoxListName);
+            int listCreated = _listsControl.addList(_textBoxListName);
 
             NewSubject _newSubjectWin;
             if (listCreated == 1)
@@ -70,7 +71,7 @@ namespace CardsLang
                 
             }
             
-            /*
+            /*can be deleted
             NewSubject _newSubjectWin = new NewSubject();
             string _textBoxListName = textBoxListName.Text.ToString();
             if (isValidSubject(_textBoxListName))
@@ -104,11 +105,9 @@ namespace CardsLang
     */
         }
 
-        private void textBoxListName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-        /*private bool isValidSubject(string subject)
+        
+        /*can be deleted
+        private bool isValidSubject(string subject)
         {
             if (subject.Trim() != "")
                 return true;
@@ -133,7 +132,7 @@ namespace CardsLang
         {
             string _updatedName = textBoxListName.Text.ToString();
             
-            if (_lists.updateListName(_updatedName, listBoxLists.SelectedValue.ToString()))
+            if (_listsControl.updateListName(_updatedName, listBoxLists.SelectedValue.ToString()))
             {
                 updateBoxList(_updatedName, listBoxLists.SelectedIndex);
                 clearTextbox();
@@ -147,7 +146,8 @@ namespace CardsLang
             else MessageBox.Show("Name is not valid or already exist");
         }
 
-       /* private bool updateListName(string updatedName, string oldName)
+       /*  can be deleted
+       private bool updateListName(string updatedName, string oldName)
         {
             List<Card> _cards;
             int _indexUpdate;
@@ -211,12 +211,17 @@ namespace CardsLang
 
             if (_indexDelete > -1)
             {
-                if (_lists.deleteCardsList(_removeSubject))
+                if (_listsControl.deleteCardsList(_removeSubject))
                 {
                     listBoxLists.Items.RemoveAt(_indexDelete);
                     clearTextbox();
                 }
             }
+        }
+
+        private void textBoxListName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

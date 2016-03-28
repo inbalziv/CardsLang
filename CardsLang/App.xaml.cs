@@ -13,6 +13,7 @@ namespace CardsLang
     /// </summary>
     public partial class App : Application
     {
-        public Dictionary<string, List<Card>> _dictList { get; set; }
+        // public Dictionary<string, List<Card>> _dictList { get; set; }
+        public AddLists _addLists;
     }
 }

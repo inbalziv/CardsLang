@@ -6,16 +6,30 @@ using System.Threading.Tasks;
 
 namespace CardsLang
 {
-    class AddLists
+    public class AddLists
     {
         //  public Dictionary<string, List<Card>> _cardsList { get; set; }
         private Dictionary<string, List<Card>> _cardsList;
-        public List<Card> _cards { get; set; }
+        // private List<Card> _cards;
         public AddLists()
         {
-            (App.Current as App)._dictList = new Dictionary<string, List<Card>>();
-            _cardsList = (App.Current as App)._dictList;
-            _cards = new List<Card>();
+            _cardsList = new Dictionary<string, List<Card>>();
+            //  _cards = new List<Card>();
+        }
+
+        public Dictionary<string, List<Card>> CardLists
+        {
+            get
+            {
+                if (_cardsList != null)
+                    return _cardsList;
+                else return new Dictionary<string, List<Card>>();
+            }
+            set
+            {
+                _cardsList = value;                 
+                
+            }
         }
         /**********************************************************************
           addList check if subject is valid
@@ -42,7 +56,7 @@ namespace CardsLang
         public bool updateListName(string updatedName, string oldName)
         {
             List<Card> _cards;
-            int _indexUpdate;
+            
             string _updatedSubject = updatedName.Trim();
             if (isValidSubject(_updatedSubject))
             {
@@ -61,12 +75,16 @@ namespace CardsLang
         }
         public bool deleteCardsList(string _removeSubject)
         {
-            if (_cardsList.ContainsKey(_removeSubject))
-            { 
-                _cardsList.Remove(_removeSubject);                
-                return true;
+            try
+            {
+                _cardsList.Remove(_removeSubject);
+                    return true;              
+                
             }
-            else return false;
+            catch (KeyNotFoundException)
+            {
+                return false;
+            }
         }
         private bool isValidSubject(string subject)
         {
@@ -74,11 +92,28 @@ namespace CardsLang
                 return true;
             else return false;
         }
-
-        public void addCard(string front, string back)
+        
+        public void addCard(string front, string back, string key)
         {
-            _cards.Add(new Card(front, back));
+            // string _subject = this._cardsList[key];
+            if (_cardsList.ContainsKey(key))
+            {
+                try
+                {
+                    _cardsList[key].Add(new Card(front, back));
+                }
+                catch (KeyNotFoundException)
+                {
+                    Console.WriteLine("Key = \"tif\" is not found.");
+                }
+            }
+            else
+            {
+                _cardsList.Add(key, new List<Card>());
+                _cardsList[key].Add(new Card(front, back));
+            }
         }
+        /*
         public bool updateCard(string frontUpdate, string backUpdate, int _index)
         {            
             string _frontUpdate = frontUpdate.Trim();
@@ -111,6 +146,6 @@ namespace CardsLang
                 return true;
             }
             else return false;
-        }
+        } */
     }
 }

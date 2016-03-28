@@ -11,7 +11,10 @@
     <Grid>
         <Grid x:Name="newSubjectWin">
             <Grid.Background>
-                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionColorKey}}"/>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Offset="0" Color="Silver"/>
+                    <GradientStop Offset="1" Color="Gray"/>
+                </LinearGradientBrush>
             </Grid.Background>
             <Label x:Name="labelSubject" Content="Subject" HorizontalAlignment="Left" Height="23" Margin="51,19,0,0" VerticalAlignment="Top" Width="66"/>
             <TextBox x:Name="textBoxSubject" HorizontalAlignment="Left" Height="23" Margin="147,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>

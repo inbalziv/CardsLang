@@ -20,7 +20,8 @@ namespace CardsLang
     /// </summary>
     public partial class studyLists : Page
     {
-        List<CardsList> _cardsList = new List<CardsList>();
+        
+        private AddLists _studyLists = new AddLists();
         public studyLists()
         {
             InitializeComponent();
@@ -53,14 +54,14 @@ namespace CardsLang
         private void fillBoxList()
         {
             //List<CardsList> _cardsList = new List<CardsList>();
-            if (_cardsList != null)
-            {
-                foreach (var item in this._cardsList)
-                {
-                    listBoxSubjects.Items.Add(item.getSubject());
+            /* if (_studyLists != null)
+             {
+                 foreach (var item in this._studyLists)
+                 {
+                     listBoxSubjects.Items.Add(item.getSubject());
 
-                }
-            }
+                 }
+             }*/
         }
     }
 }
