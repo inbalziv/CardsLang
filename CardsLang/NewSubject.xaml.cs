@@ -9,7 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-
+using System.Data;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -30,36 +30,41 @@ namespace CardsLang
      //   AddLists _lists = new AddLists();
         //   public List<Card> _cards = new List<Card>();
         int _selectedIndex = -1;
-        private AddLists _listsBuild = new AddLists();
+        private AddLists _listsBuild;
 
-        public NewSubject()
+        public NewSubject(AddLists listsBuild)
         {
             InitializeComponent();
+            _listsBuild = listsBuild;
             _cards = new List<Card>();
-
+            updateDataGrid();
             hideListsControl();
-            listBoxBack.SelectionMode = SelectionMode.Single;
-          //  labelCount.Content = _cardsNum.ToString();
+            dataGridCards.HeadersVisibility = DataGridHeadersVisibility.All;
+            dataGridCards.IsReadOnly = true;
+            dataGridCards.AutoGenerateColumns = true;
+                            
             buttonUpdateCard.Visibility = Visibility.Hidden;
             buttonDelete.Visibility = Visibility.Hidden;
 
         }
-           
+        private void updateDataGrid()
+        {
+            dataGridCards.ItemsSource = _listsBuild.CardLists.Values.SelectMany(c => c).ToList();
+        } 
 
         private void buttonAddCard_Click(object sender, RoutedEventArgs e)
         {
             
-            addNewCard(textBoxFront.Text.ToString(), textBoxBack.Text.ToString());            
+            addNewCard(textBoxFront.Text.ToString(), textBoxBack.Text.ToString());
             
-            listBoxBack.DataContext = _cards;
-
         }
         private void hideListsControl()
         {
             //ListsControl.VisibilityProperty = VisibilityProperty.hi
         }
         
-    /*    private void addCard(string front, string back)
+    /*    to be deleted
+    private void addCard(string front, string back)
         {
             //add card to list in subject
             
@@ -122,26 +127,19 @@ namespace CardsLang
                 _front = front.Trim();
                 _back = back.Trim();
                 _listsBuild.addCard(_front, _back, textBoxSubject.Text);
-                
-                addCardToBoxList(_front, _back);                
+                updateDataGrid();
                 clearTextbox();
             }
         }
          
-        private void addCardToBoxList(string front, string back)
+        
+        private void updateDataGrid(string front, string back, int index)
         {
-            
-            this.listBoxFront.Items.Add(front);
-            this.listBoxBack.Items.Add(back);
-
-        }
-        private void updateBoxList(string front, string back, int index)
-        {
-            if ((listBoxFront.Items.Count >= index) && (listBoxBack.Items.Count >= index) && (index > 0))                
+            if ((dataGridCards.Items.Count >= index) && (dataGridCards.Items.Count >= index) && (index > 0))                
             {
                 _selectedIndex = index;
-                listBoxFront.Items[_selectedIndex] = front;
-                listBoxBack.Items[_selectedIndex] = back;
+                dataGridCards.Items[_selectedIndex] = front;
+                dataGridCards.Items[_selectedIndex] = back;
             }
         }
         private bool isCardValid(string front, string back)
@@ -163,11 +161,11 @@ namespace CardsLang
         private void listBoxFront_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int _index;
-            _index = this.listBoxFront.SelectedIndex;
+            _index = this.dataGridCards.SelectedIndex;
             if (_index > -1)
             {                              
-                this.textBoxFront.Text = listBoxFront.SelectedValue.ToString();
-                this.textBoxBack.Text = listBoxBack.Items[_index].ToString();
+                this.textBoxFront.Text = dataGridCards.SelectedValue.ToString();
+                this.textBoxBack.Text = dataGridCards.Items[_index].ToString();
                 buttonAddCard.Visibility = Visibility.Hidden;
                 buttonUpdateCard.Visibility = Visibility.Visible;
                 buttonDelete.Visibility = Visibility.Visible;
@@ -179,12 +177,12 @@ namespace CardsLang
         {
             int _index;
             
-            _index = this.listBoxBack.SelectedIndex;
+            _index = this.dataGridCards.SelectedIndex;
             if (_index > -1)
             {
-                this.textBoxBack.Text = listBoxBack.SelectedValue.ToString();
-                this.textBoxFront.Text = listBoxFront.Items[_index].ToString();
-                listBoxFront.SelectedIndex = _index;
+                this.textBoxBack.Text = dataGridCards.SelectedValue.ToString();
+                this.textBoxFront.Text = dataGridCards.Items[_index].ToString();
+                dataGridCards.SelectedIndex = _index;
                 buttonAddCard.Visibility = Visibility.Hidden;
                 buttonUpdateCard.Visibility = Visibility.Visible;
                 buttonDelete.Visibility = Visibility.Visible;
@@ -201,23 +199,24 @@ namespace CardsLang
         }
         
         private void buttonUpdateCard_Click(object sender, RoutedEventArgs e)
-        {/*
+        {
             string _frontUpdate = textBoxFront.Text.ToString();
             string _backUpdate = textBoxBack.Text.ToString();
-            
-            if (isCardValid(_frontUpdate, textBoxBack.Text.ToString()))
+            int _indexUpdate = this.dataGridCards.SelectedIndex;
+            if (isCardValid(_frontUpdate, _backUpdate))
             {
-                int _indexUpdate = listBoxFront.SelectedIndex;
-                if (_listsBuild.updateCard(_frontUpdate, _backUpdate, _indexUpdate))
+                string originalBack = dataGridCards.SelectedValue.ToString();
+                string originalFront = dataGridCards.Items[_indexUpdate].ToString();
+               // if (_listsBuild.updateCard(_frontUpdate, _backUpdate, this.textBoxSubject.Text.ToString()))
                 {
-                    listBoxBack.DataContext = _cards;
+                    dataGridCards.DataContext = _cards;
                     buttonAddCard.Visibility = Visibility.Visible;
                     buttonUpdateCard.Visibility = Visibility.Hidden;
                     buttonDelete.Visibility = Visibility.Hidden;
-                    updateBoxList(_frontUpdate, _backUpdate, _indexUpdate);
+                  //  dataGridCards(_frontUpdate, _backUpdate, _indexUpdate);
                     clearTextbox();
                 }
-            } */
+            } 
         }
 
         private void buttonDelete_Click(object sender, RoutedEventArgs e)
@@ -232,7 +231,23 @@ namespace CardsLang
                 buttonAddCard.Visibility = Visibility.Visible;
                 buttonUpdateCard.Visibility = Visibility.Hidden;
             }*/
-        } 
+        }
+
+        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            int _index = this.dataGridCards.SelectedIndex;
+            if (_index > -1)
+            {
+                var row = dataGridCards.SelectedItems[_index];
+                
+                //  this.textBoxBack.Text = row["back"];
+              //  row.Cells["back"].Value;
+                buttonAddCard.Visibility = Visibility.Hidden;
+                buttonUpdateCard.Visibility = Visibility.Visible;
+                buttonDelete.Visibility = Visibility.Visible;
+            }
+        }
     }
     
 }

@@ -39,7 +39,7 @@ namespace CardsLang
         ***********************************************************************/
         public int addList(string subject)
         {
-            NewSubject _newSubjectWin = new NewSubject();
+          
             string _textBoxListName = subject;
             if (isValidSubject(_textBoxListName))
             {
@@ -95,7 +95,7 @@ namespace CardsLang
         
         public void addCard(string front, string back, string key)
         {
-            // string _subject = this._cardsList[key];
+            
             if (_cardsList.ContainsKey(key))
             {
                 try
@@ -114,30 +114,28 @@ namespace CardsLang
             }
         }
         /*
-        public bool updateCard(string frontUpdate, string backUpdate, int _index)
+        public bool updateCard(string frontUpdate, string backUpdate, string subject)
         {            
             string _frontUpdate = frontUpdate.Trim();
             string _backUpdate = backUpdate.Trim();
             Card _card = new Card(_frontUpdate, _backUpdate);
-
-            if (_index > -1)
+            Card _originalCard;
+            _cardsList.TryGetValue(subject, out (_card[8]._front));
+            
+            if (_cardsList.TryGetValue(subject))
             {
-                if ((_cards[_index]._front != _frontUpdate) && (_cards[_index]._back != _backUpdate))
-                {
-                    _cards[_index]._front = _frontUpdate;
-                    _cards[_index]._back = _backUpdate;
-                    //update card value, 
-                    // _cards.RemoveAt(_index);
-                    //maybe update values ??
-                    //  _cards.Insert(_index, _card);
+
+                // update card value, 
+                _cardsList.Remove(_index);
+                //maybe update values ??
+                _cardsList.Insert(_index, _card);
 
                 }
                 return true;
             }
-            else return false;
-        }
-        
-        public bool deleteCard(int indexDelete)
+            else return false; 
+    }*/
+        /*        public bool deleteCard(int indexDelete)
         {
 
             if (indexDelete > -1)

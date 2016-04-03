@@ -47,7 +47,7 @@ namespace CardsLang
             NewSubject _newSubjectWin;
             if (listCreated == 1)
             {
-                _newSubjectWin = new NewSubject();
+                _newSubjectWin = new NewSubject(_listsControl);
                 var host = new Window();
                 host.Content = _newSubjectWin;
                 host.Show();

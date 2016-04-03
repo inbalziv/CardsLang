@@ -9,7 +9,7 @@
       Title="studyLists">
 
     <Grid Background="#FFC5C5C5">
-        <Label x:Name="labelStudy" Content="Choose subject to study from the list" HorizontalAlignment="Left" Height="27" Margin="61,34,0,0" VerticalAlignment="Top" Width="198"/>
+        <Label x:Name="labelStudy" Content="Choose subject to study from the list" HorizontalAlignment="Left" Height="27" Margin="61,34,0,0" VerticalAlignment="Top" Width="222"/>
         <ListBox x:Name="listBoxSubjects" HorizontalAlignment="Left" Height="166" Margin="61,89,0,0" VerticalAlignment="Top" Width="99" SelectionChanged="listBoxSubjects_SelectionChanged"/>
         <Button x:Name="buttonStartStudy" Content="Study" HorizontalAlignment="Left" Height="46" Margin="195,209,0,0" VerticalAlignment="Top" Width="64" Click="buttonStartStudy_Click"/>
         <Button x:Name="buttonBack" Content="Back" HorizontalAlignment="Left" Height="51" Margin="10,10,0,0" VerticalAlignment="Top" Width="46" Click="buttonBack_Click"/>

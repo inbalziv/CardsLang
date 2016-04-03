@@ -21,12 +21,16 @@
             <Button x:Name="buttonAddCard" Content="Add Card" HorizontalAlignment="Left" Height="21" Margin="211,60,0,0" VerticalAlignment="Top" Width="65" Click="buttonAddCard_Click"/>
             <TextBox x:Name="textBoxFront" HorizontalAlignment="Left" Height="18" Margin="10,63,0,0" TextWrapping="Wrap" Text="Front" VerticalAlignment="Top" Width="78" TextChanged="textBoxFront_TextChanged"/>
             <TextBox x:Name="textBoxBack" HorizontalAlignment="Left" Height="18" Margin="111,63,0,0" TextWrapping="Wrap" Text="Back" VerticalAlignment="Top" Width="78" TextChanged="textBox_Back_TextChanged"/>
-            <ListBox x:Name="listBoxBack" HorizontalAlignment="Left" Height="154" Margin="111,124,0,0" VerticalAlignment="Top" Width="90" SelectionChanged="listBox_SelectionChanged"/>
             <Label x:Name="labelCount" Content="" HorizontalAlignment="Left" Height="33" Margin="31,149,0,0" VerticalAlignment="Top" Width="28"/>
-            <ListBox x:Name="listBoxFront" HorizontalAlignment="Left" Height="154" Margin="21,124,0,0" VerticalAlignment="Top" Width="90" SelectionChanged="listBoxFront_SelectionChanged"/>
             <Button x:Name="buttonDelete" Content="Delete" HorizontalAlignment="Left" Height="22" Margin="213,86,0,0" VerticalAlignment="Top" Width="63" RenderTransformOrigin="1.714,-0.364" Click="buttonDelete_Click"/>
             <Button x:Name="buttonDone" Content="Done" HorizontalAlignment="Left" Margin="237,258,0,0" VerticalAlignment="Top" Width="39" RenderTransformOrigin="-0.051,0.05" Click="buttonDone_Click"/>
             <Button x:Name="buttonUpdateCard" Content="Update" HorizontalAlignment="Left" Height="21" Margin="214,117,0,0" VerticalAlignment="Top" Width="62" Click="buttonUpdateCard_Click"/>
+            <DataGrid x:Name="dataGridCards" HorizontalAlignment="Left" Height="166" Margin="15,112,0,0" VerticalAlignment="Top" Width="174" SelectionChanged="dataGrid_SelectionChanged" SelectionMode="Single" SelectionUnit="FullRow">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Front" />                
+                    <DataGridTextColumn Header="Back" />
+                </DataGrid.Columns>
+            </DataGrid> 
 
         </Grid>
 
