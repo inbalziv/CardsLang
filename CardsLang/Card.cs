@@ -21,6 +21,7 @@ namespace CardsLang
             this._front = card._front;
             this._back = card._back;
         }
+        
     }
 
 }

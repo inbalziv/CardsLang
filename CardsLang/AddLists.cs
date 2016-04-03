@@ -38,8 +38,7 @@ namespace CardsLang
             if subject is null/empty --> returns -1 
         ***********************************************************************/
         public int addList(string subject)
-        {
-          
+        {          
             string _textBoxListName = subject;
             if (isValidSubject(_textBoxListName))
             {
@@ -135,15 +134,36 @@ namespace CardsLang
             }
             else return false; 
     }*/
-        /*        public bool deleteCard(int indexDelete)
-        {
-
+        public bool deleteCard(int indexDelete, string key)
+        {            
+            List<Card> tempList;
             if (indexDelete > -1)
             {
-                _cards.RemoveAt(indexDelete);                
-                return true;
+                if (_cardsList.TryGetValue(key, out tempList))
+                {
+                    tempList.RemoveAt(indexDelete);
+                    _cardsList[key] = tempList;
+                    return true;
+                }
+                return false;
             }
             else return false;
-        } */
+        } 
+        public bool updateCard(int indexUpdate, string key, string updatedFront, string updatedBack)
+        {
+            List<Card> tempList;
+            if (indexUpdate > -1)
+            {
+                if (_cardsList.TryGetValue(key, out tempList))
+                {
+                    tempList[indexUpdate]._front = updatedFront;
+                    tempList[indexUpdate]._back = updatedBack;
+                    _cardsList[key] = tempList;
+                    return true;
+                }
+                return false;
+            }
+            else return false;
+        }
     }
 }
