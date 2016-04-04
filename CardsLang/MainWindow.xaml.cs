@@ -27,8 +27,9 @@ namespace CardsLang
 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
-            ListsControl _listControlWin = new ListsControl();
+            
             var host = new Window();
+            ListsControl _listControlWin = new ListsControl(host);
             host.Content = _listControlWin;
             host.Show();
             this.Close();

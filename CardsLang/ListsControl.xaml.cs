@@ -23,15 +23,15 @@ namespace CardsLang
     {
         // List<CardsList> _cardsList = new List<CardsList>();   
         ///   public Dictionary<string, List<Card>> _cardsList { get; set; }
-
+        public Window host = new Window();
         private AddLists _listsControl = new AddLists();
-
+        public Window _hostListsControl;
         private int _selectedIndex = -1;
-        public ListsControl()
+        public ListsControl(Window hostListsControl)
         {
             InitializeComponent();
+            _hostListsControl = hostListsControl;
             
-         ///   _cardsList = new Dictionary<string, List<Card>>();
             buttonUpdate.Visibility = Visibility.Hidden;
             buttonAddList.Visibility = Visibility.Visible;
             buttonEdit.Visibility = Visibility.Hidden;
@@ -48,12 +48,11 @@ namespace CardsLang
             if (listCreated == 1)
             {
                 _newSubjectWin = new NewSubject(_listsControl);
-                var host = new Window();
                 host.Content = _newSubjectWin;
                 host.Show();
-
+                
                 _newSubjectWin.textBoxSubject.Text = _textBoxListName;
-
+                _hostListsControl.Visibility = Visibility.Hidden;
                 // add list name to list box 
                 listBoxLists.Items.Add(_textBoxListName);
                 textBoxListName.Clear();
@@ -69,50 +68,9 @@ namespace CardsLang
                 }
                 MessageBox.Show(_message, "Error");
                 
-            }
+            }          
             
-            /*can be deleted
-            NewSubject _newSubjectWin = new NewSubject();
-            string _textBoxListName = textBoxListName.Text.ToString();
-            if (isValidSubject(_textBoxListName))
-            {
-                //create new CardsList                   
-                if (!_cardsList.ContainsKey(_textBoxListName))
-                { 
-                    _cardsList.Add(_textBoxListName, new List<Card>());
-                    //open NewSubject window to start adding Cards
-                    var host = new Window();
-                    host.Content = _newSubjectWin;
-                    host.Show();          
-                    
-                    _newSubjectWin.textBoxSubject.Text = _textBoxListName;
-
-                    // add list name to list box 
-                    listBoxLists.Items.Add(_textBoxListName);                    
-                    textBoxListName.Clear();
-                }
-                else
-                    MessageBox.Show("List name already exist, please choose a different name","Error Message");
-
-            }
-            else
-            {
-                //error message incase list name is null or space only
-                textBoxListName.Clear();
-                MessageBox.Show("Please fill list name","Error Message");
-            }
-
-    */
         }
-
-        
-        /*can be deleted
-        private bool isValidSubject(string subject)
-        {
-            if (subject.Trim() != "")
-                return true;
-            else return false;
-        } */
         
 
         private void listBoxLists_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -136,7 +94,7 @@ namespace CardsLang
             {
                 updateBoxList(_updatedName, listBoxLists.SelectedIndex);
                 clearTextbox();
-                // listBoxLists.DataContext = _cards;
+                
                 buttonUpdate.Visibility = Visibility.Hidden;
                 buttonAddList.Visibility = Visibility.Visible;
                 buttonEdit.Visibility = Visibility.Hidden;
@@ -146,35 +104,7 @@ namespace CardsLang
             else MessageBox.Show("Name is not valid or already exist");
         }
 
-       /*  can be deleted
-       private bool updateListName(string updatedName, string oldName)
-        {
-            List<Card> _cards;
-            int _indexUpdate;
-            string _updatedName = updatedName.Trim();
-            if (isValidSubject(_updatedName))
-            {
-                if (!_cardsList.ContainsKey(_updatedName))
-                    return false;
-                _indexUpdate = listBoxLists.SelectedIndex;
-                if (_indexUpdate > -1)
-                {
-                    _cards = new List<Card>(_cardsList[_updatedName]);
-                    _cardsList.Remove(oldName);  // do not change order
-                    _cardsList[_updatedName] = _cards;  // or dict.Add(newKey, value) depending on ur comfort
-                    updateBoxList(_updatedName, _indexUpdate);
-                    clearTextbox();
-                    return true;
-                }
-                return false;
-            }
-            else
-            {
-                MessageBox.Show("Name is not valid");
-                return false;
-            }
-        } */
-
+       
         private void updateBoxList(string updatedName, int index)
         {
             if ((listBoxLists.Items.Count >= index) && (index > 0))

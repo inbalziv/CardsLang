@@ -25,30 +25,28 @@ namespace CardsLang
      
     public partial class NewSubject : Page
     {
-       // private Dictionary<string, List<Card>> _cardsList;
-        private List<Card> _cards;
-     //   AddLists _lists = new AddLists();
-        //   public List<Card> _cards = new List<Card>();
+        private List<Card> _cards;     
         int _selectedIndex = -1;
         private AddLists _listsBuild;
-
+                
         public NewSubject(AddLists listsBuild)
         {
+            
             InitializeComponent();
             _listsBuild = listsBuild;
             _cards = new List<Card>();
             
-            updateDataGrid();
-            
+            updateDataGrid();            
             hideListsControl();
             dataGridCards.HeadersVisibility = DataGridHeadersVisibility.All;
             dataGridCards.IsReadOnly = true;
             dataGridCards.AutoGenerateColumns = true;
-            DataGridTextColumn colStar1 = new DataGridTextColumn();
-            colStar1.Header = "Star 1";
-            colStar1.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+
+         //   DataGridTextColumn colStar1 = new DataGridTextColumn();
+          //  colStar1.Header = "Star 1";
+           // colStar1.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
           //  colStar1.SetValue = _listsBuild.CardLists.Values.Where(out CardsLang .SelectMany(c => c).ToList();
-            dataGridCards.Columns.Add(colStar1);
+         //   dataGridCards.Columns.Add(colStar1);
 
             buttonUpdateCard.Visibility = Visibility.Hidden;
             buttonDelete.Visibility = Visibility.Hidden;
@@ -126,6 +124,7 @@ namespace CardsLang
         {
 
             
+
         }
         
         private void buttonUpdateCard_Click(object sender, RoutedEventArgs e)
