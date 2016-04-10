@@ -29,7 +29,7 @@ namespace CardsLang
         {
             
             var host = new Window();
-            ListsControl _listControlWin = new ListsControl(host);
+            ListsControl _listControlWin = new ListsControl();
             host.Content = _listControlWin;
             host.Show();
             this.Close();

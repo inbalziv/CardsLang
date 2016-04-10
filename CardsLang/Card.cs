@@ -8,6 +8,7 @@ namespace CardsLang
 {
     public class Card
     {
+        
         public string _front { get;  set; }
         public string _back { get;  set; }
         

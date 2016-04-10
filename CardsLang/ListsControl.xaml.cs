@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
 
 
 namespace CardsLang
@@ -25,13 +26,25 @@ namespace CardsLang
         ///   public Dictionary<string, List<Card>> _cardsList { get; set; }
         public Window host = new Window();
         private AddLists _listsControl = new AddLists();
-        public Window _hostListsControl;
+     //   public Window _hostListsControl;
         private int _selectedIndex = -1;
-        public ListsControl(Window hostListsControl)
+        public ListsControl()
         {
             InitializeComponent();
-            _hostListsControl = hostListsControl;
+          //  _hostListsControl = hostListsControl;
             
+            buttonUpdate.Visibility = Visibility.Hidden;
+            buttonAddList.Visibility = Visibility.Visible;
+            buttonEdit.Visibility = Visibility.Hidden;
+            buttonDelete.Visibility = Visibility.Hidden;
+        }
+        public ListsControl(AddLists listsControl)
+        {
+            InitializeComponent();
+            //   _listsBuild.CardLists.Values.SelectMany(c => c).ToList();
+            _listsControl = listsControl;
+           // listBoxLists.Items.AddRange(_listsControl.CardLists.Keys.ToArray()); //= _listsControl.CardLists.Keys.ToList();
+            listBoxLists.ItemsSource = _listsControl.CardLists.Keys.ToList();
             buttonUpdate.Visibility = Visibility.Hidden;
             buttonAddList.Visibility = Visibility.Visible;
             buttonEdit.Visibility = Visibility.Hidden;
@@ -50,11 +63,10 @@ namespace CardsLang
                 _newSubjectWin = new NewSubject(_listsControl);
                 host.Content = _newSubjectWin;
                 host.Show();
-                
+                loadNewSubjectWin(_newSubjectWin);
                 _newSubjectWin.textBoxSubject.Text = _textBoxListName;
-                _hostListsControl.Visibility = Visibility.Hidden;
-                // add list name to list box 
-                listBoxLists.Items.Add(_textBoxListName);
+                listBoxLists.ItemsSource = _listsControl.CardLists.Keys.ToList();
+              //  listBoxLists.Items.Add(_textBoxListName);
                 textBoxListName.Clear();
             }
             else
@@ -71,7 +83,18 @@ namespace CardsLang
             }          
             
         }
-        
+        private void loadNewSubjectWin(NewSubject _newSubjectWin)
+        {
+            foreach (Window window in App.Current.Windows)
+
+            {
+                if (window.Content == _newSubjectWin)
+                {
+                    window.Show();
+                }
+                else window.Hide();
+            }
+        }
 
         private void listBoxLists_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

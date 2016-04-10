@@ -28,7 +28,7 @@ namespace CardsLang
         private List<Card> _cards;     
         int _selectedIndex = -1;
         private AddLists _listsBuild;
-                
+        public Window host = new Window();
         public NewSubject(AddLists listsBuild)
         {
             
@@ -42,11 +42,14 @@ namespace CardsLang
             dataGridCards.IsReadOnly = true;
             dataGridCards.AutoGenerateColumns = true;
 
+          //  dataGridCards.Columns.Count = 1;
          //   DataGridTextColumn colStar1 = new DataGridTextColumn();
-          //  colStar1.Header = "Star 1";
-           // colStar1.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
-          //  colStar1.SetValue = _listsBuild.CardLists.Values.Where(out CardsLang .SelectMany(c => c).ToList();
-         //   dataGridCards.Columns.Add(colStar1);
+          // colStar1.Header = "Star 1";
+         //   List<Card> listTemp = _listsBuild.CardLists.Values.SelectMany(c => c).ToList();
+            //  
+            // colStar1.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+          //  colStar1.SetValue = listTemp[0]._front;
+           // dataGridCards.Columns.Add(colStar1);
 
             buttonUpdateCard.Visibility = Visibility.Hidden;
             buttonDelete.Visibility = Visibility.Hidden;
@@ -54,6 +57,12 @@ namespace CardsLang
         }
         private void updateDataGrid()
         {
+          //  List<Card> listTemp = _listsBuild.CardLists.Values.SelectMany(c => c).ToList();
+          //  DataGridTextColumn colStar1 = new DataGridTextColumn();
+           //   colStar1.Header = "Star 1";
+            // colStar1.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+           //   colStar1.SetValue = _listsBuild.CardLists.Values.Where(out CardsLang.SelectMany(c => c).ToList();
+            //   dataGridCards.Columns.Add(colStar1);
             dataGridCards.ItemsSource = _listsBuild.CardLists.Values.SelectMany(c => c).ToList();
             
         }
@@ -89,11 +98,16 @@ namespace CardsLang
                 _back = back.Trim();
                 _listsBuild.addCard(_front, _back, textBoxSubject.Text);
                 updateDataGrid();
+
+                dataGridCards.Columns[0].Header = "Front";
+                dataGridCards.Columns[1].Header = "Back";
+                dataGridCards.Columns[0].Width = dataGridCards.Width / 2;
+               
                 clearTextbox();
             }
         }
          
-        
+        //never used??
         private void updateDataGrid(string front, string back, int index)
         {
             if ((dataGridCards.Items.Count >= index) && (dataGridCards.Items.Count >= index) && (index > 0))                
@@ -122,11 +136,24 @@ namespace CardsLang
          
         private void buttonDone_Click(object sender, RoutedEventArgs e)
         {
-
-            
+            loadListsControlWin();
 
         }
-        
+        private void loadListsControlWin()
+        {
+            ListsControl _listControlWin = new ListsControl(_listsBuild);
+            host.Content = _listControlWin;
+            host.Show();
+            foreach (Window window in App.Current.Windows)
+
+            {
+                if (window.Content == _listControlWin)
+                {
+                    window.Show();
+                }
+                else window.Hide();
+            }
+        }
         private void buttonUpdateCard_Click(object sender, RoutedEventArgs e)
         {
             string _frontUpdate = textBoxFront.Text.ToString();
