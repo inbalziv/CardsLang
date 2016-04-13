@@ -59,14 +59,26 @@ namespace CardsLang
             string _updatedSubject = updatedName.Trim();
             if (isValidSubject(_updatedSubject))
             {
-                if (!_cardsList.ContainsKey(_updatedSubject))
+                if (_cardsList.ContainsKey(_updatedSubject))
                     return false;
                 else
                 {
-                    _cards = new List<Card>(_cardsList[_updatedSubject]);
-                    _cardsList.Remove(oldName);  // do not change order
-                    _cardsList[_updatedSubject] = _cards;  // or dict.Add(newKey, value) depending on ur comfort
-                    return true;
+                    int index = 0;
+                    foreach (var item in _cardsList.Keys)
+                    {
+                        if (item == oldName)
+                            break;                            
+                        else index++;
+                        
+                    }
+                    if (_cardsList.TryGetValue(oldName, out _cards))
+                    {
+                    
+                        _cardsList.Add(_updatedSubject, _cards);                       
+                        _cardsList.Remove(oldName);  // do not change order                         
+                        return true;
+                    }
+                    else return false;
                 }             
             }
             return false;

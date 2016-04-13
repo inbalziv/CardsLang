@@ -34,6 +34,7 @@ namespace CardsLang
         private void listBoxSubjects_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             buttonStartStudy.Visibility = Visibility.Visible;
+            _studyLists.CardLists.Keys.ToList();
 
         }
 

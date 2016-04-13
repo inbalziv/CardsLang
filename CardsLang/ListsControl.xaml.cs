@@ -27,11 +27,10 @@ namespace CardsLang
         public Window host = new Window();
         private AddLists _listsControl = new AddLists();
      //   public Window _hostListsControl;
-        private int _selectedIndex = -1;
+        
         public ListsControl()
         {
-            InitializeComponent();
-          //  _hostListsControl = hostListsControl;
+            InitializeComponent();       
             
             buttonUpdate.Visibility = Visibility.Hidden;
             buttonAddList.Visibility = Visibility.Visible;
@@ -41,9 +40,8 @@ namespace CardsLang
         public ListsControl(AddLists listsControl)
         {
             InitializeComponent();
-            //   _listsBuild.CardLists.Values.SelectMany(c => c).ToList();
-            _listsControl = listsControl;
-           // listBoxLists.Items.AddRange(_listsControl.CardLists.Keys.ToArray()); //= _listsControl.CardLists.Keys.ToList();
+            
+            _listsControl = listsControl;           
             listBoxLists.ItemsSource = _listsControl.CardLists.Keys.ToList();
             buttonUpdate.Visibility = Visibility.Hidden;
             buttonAddList.Visibility = Visibility.Visible;
@@ -56,18 +54,9 @@ namespace CardsLang
             string _message;
             string _textBoxListName = textBoxListName.Text.ToString().Trim();
             int listCreated = _listsControl.addList(_textBoxListName);
-
-            NewSubject _newSubjectWin;
             if (listCreated == 1)
             {
-                _newSubjectWin = new NewSubject(_listsControl);
-                host.Content = _newSubjectWin;
-                host.Show();
-                loadNewSubjectWin(_newSubjectWin);
-                _newSubjectWin.textBoxSubject.Text = _textBoxListName;
-                listBoxLists.ItemsSource = _listsControl.CardLists.Keys.ToList();
-              //  listBoxLists.Items.Add(_textBoxListName);
-                textBoxListName.Clear();
+                createNewSubject(_textBoxListName);
             }
             else
             {
@@ -79,8 +68,17 @@ namespace CardsLang
                     textBoxListName.Clear();
                 }
                 MessageBox.Show(_message, "Error");
-                
-            }          
+            }
+        }
+        private void createNewSubject(string listName)
+        {            
+            NewSubject _newSubjectWin = new NewSubject(_listsControl);
+            host.Content = _newSubjectWin;
+            host.Show();
+            loadNewSubjectWin(_newSubjectWin);
+            _newSubjectWin.textBoxSubject.Text = listName;
+            listBoxLists.ItemsSource = _listsControl.CardLists.Keys.ToList();
+            textBoxListName.Clear();
             
         }
         private void loadNewSubjectWin(NewSubject _newSubjectWin)
@@ -111,18 +109,15 @@ namespace CardsLang
 
         private void buttonUpdate_Click(object sender, RoutedEventArgs e)
         {
-            string _updatedName = textBoxListName.Text.ToString();
-            
+            string _updatedName = textBoxListName.Text.ToString();            
             if (_listsControl.updateListName(_updatedName, listBoxLists.SelectedValue.ToString()))
             {
                 updateBoxList(_updatedName, listBoxLists.SelectedIndex);
-                clearTextbox();
-                
+                clearTextbox();                
                 buttonUpdate.Visibility = Visibility.Hidden;
                 buttonAddList.Visibility = Visibility.Visible;
                 buttonEdit.Visibility = Visibility.Hidden;
                 buttonDelete.Visibility = Visibility.Hidden;
-
             }
             else MessageBox.Show("Name is not valid or already exist");
         }
@@ -130,11 +125,12 @@ namespace CardsLang
        
         private void updateBoxList(string updatedName, int index)
         {
-            if ((listBoxLists.Items.Count >= index) && (index > 0))
-            {
-                _selectedIndex = index;
-                listBoxLists.Items[_selectedIndex] = updatedName;
-                
+            if ((listBoxLists.Items.Count >= index) && (index >= 0))
+            {               
+               
+                listBoxLists.ItemsSource = _listsControl.CardLists.Keys.ToList();
+                textBoxListName.Clear();              
+
             }
         }
         private void clearTextbox()
@@ -175,6 +171,12 @@ namespace CardsLang
         private void textBoxListName_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void buttonEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+            createNewSubject(textBoxListName.Text.ToString().Trim());
         }
     }
 }

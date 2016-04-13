@@ -25,8 +25,7 @@ namespace CardsLang
      
     public partial class NewSubject : Page
     {
-        private List<Card> _cards;     
-        int _selectedIndex = -1;
+        private List<Card> _cards;         
         private AddLists _listsBuild;
         public Window host = new Window();
         public NewSubject(AddLists listsBuild)
@@ -38,9 +37,9 @@ namespace CardsLang
             
             updateDataGrid();            
             hideListsControl();
-            dataGridCards.HeadersVisibility = DataGridHeadersVisibility.All;
+         /*   dataGridCards.HeadersVisibility = DataGridHeadersVisibility.All;
             dataGridCards.IsReadOnly = true;
-            dataGridCards.AutoGenerateColumns = true;
+            dataGridCards.AutoGenerateColumns = true; */
 
           //  dataGridCards.Columns.Count = 1;
          //   DataGridTextColumn colStar1 = new DataGridTextColumn();
@@ -57,14 +56,51 @@ namespace CardsLang
         }
         private void updateDataGrid()
         {
-          //  List<Card> listTemp = _listsBuild.CardLists.Values.SelectMany(c => c).ToList();
-          //  DataGridTextColumn colStar1 = new DataGridTextColumn();
-           //   colStar1.Header = "Star 1";
+            //  List<Card> listTemp = _listsBuild.CardLists.Values.SelectMany(c => c).ToList();
+            DataGridTextColumn frontColumn = new DataGridTextColumn();
+            DataGridTextColumn backColumn = new DataGridTextColumn();
+            frontColumn.Header = "Front";
+            backColumn.Header = "Back";
             // colStar1.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
-           //   colStar1.SetValue = _listsBuild.CardLists.Values.Where(out CardsLang.SelectMany(c => c).ToList();
+            //   colStar1.SetValue = _listsBuild.CardLists.Values.Where(out CardsLang.SelectMany(c => c).ToList();
             //   dataGridCards.Columns.Add(colStar1);
-            dataGridCards.ItemsSource = _listsBuild.CardLists.Values.SelectMany(c => c).ToList();
-            
+            if (textBoxSubject.Text != "")
+            {
+                List<Card> _currentValues;
+                string key = textBoxSubject.Text;                
+                
+                if (_listsBuild.CardLists.TryGetValue(key, out _currentValues))
+                {
+                    int count = 0;
+                    List<string> _frontValues = new List<string>();
+                    List<string> _backValues = new List<string>();
+                    
+                 //   foreach (var value in _currentValues)
+                    for (int i = 0; i < _currentValues.Count(); i++)
+                    {
+                        _frontValues.Add(_currentValues[i]._front);
+                        _backValues.Add(_currentValues[i]._back);
+                      //  if (i > 0)
+                       // if ((dataGridCards.Items.Count >= i) && (i > 0))
+                     //   {
+                            
+                            //    dataGridCards.Items[i] = _frontValues[i];
+                            // dataGridCards.Items[i] = value._back;
+                       // }
+                       // count++;
+                    }
+                   // dataGridCards.Items.Add(_frontValues);
+                    //   dataGridCards.so
+                    dataGridCards.ItemsSource = _currentValues.ToList();
+                    dataGridCards.Columns[0].Header = "Front";
+                    dataGridCards.Columns[1].Header = "Back";
+                    dataGridCards.Columns[0].Width = dataGridCards.Width / 2;
+                    dataGridCards.Columns[1].Width = dataGridCards.Width / 2;
+                    dataGridCards.UnselectAll();
+                    // dataGridCardsBack.ItemsSource = _backValues.ToList();
+                }
+                    
+            }
         }
         
 
@@ -97,26 +133,12 @@ namespace CardsLang
                 _front = front.Trim();
                 _back = back.Trim();
                 _listsBuild.addCard(_front, _back, textBoxSubject.Text);
-                updateDataGrid();
-
-                dataGridCards.Columns[0].Header = "Front";
-                dataGridCards.Columns[1].Header = "Back";
-                dataGridCards.Columns[0].Width = dataGridCards.Width / 2;
-               
+                updateDataGrid();                
                 clearTextbox();
             }
         }
          
-        //never used??
-        private void updateDataGrid(string front, string back, int index)
-        {
-            if ((dataGridCards.Items.Count >= index) && (dataGridCards.Items.Count >= index) && (index > 0))                
-            {
-                _selectedIndex = index;
-                dataGridCards.Items[_selectedIndex] = front;
-                dataGridCards.Items[_selectedIndex] = back;
-            }
-        }
+       
         private bool isCardValid(string front, string back)
         {
             if ((front.Trim() != "") && (back.Trim() != ""))
@@ -171,7 +193,8 @@ namespace CardsLang
                     buttonDelete.Visibility = Visibility.Hidden;
                   
                 }
-            } 
+            }
+             
         }
 
         private void buttonDelete_Click(object sender, RoutedEventArgs e)
