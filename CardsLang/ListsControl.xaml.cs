@@ -22,16 +22,13 @@ namespace CardsLang
     /// </summary> 
     public partial class ListsControl : Page
     {
-        // List<CardsList> _cardsList = new List<CardsList>();   
-        ///   public Dictionary<string, List<Card>> _cardsList { get; set; }
-        public Window host = new Window();
-        private AddLists _listsControl = new AddLists();
-     //   public Window _hostListsControl;
         
+        public Window host = new Window();            
+        private AddLists _listsControl;
         public ListsControl()
         {
-            InitializeComponent();       
-            
+            InitializeComponent();
+            _listsControl = new AddLists();
             buttonUpdate.Visibility = Visibility.Hidden;
             buttonAddList.Visibility = Visibility.Visible;
             buttonEdit.Visibility = Visibility.Hidden;
@@ -39,8 +36,7 @@ namespace CardsLang
         }
         public ListsControl(AddLists listsControl)
         {
-            InitializeComponent();
-            
+            InitializeComponent();            
             _listsControl = listsControl;           
             listBoxLists.ItemsSource = _listsControl.CardLists.Keys.ToList();
             buttonUpdate.Visibility = Visibility.Hidden;
@@ -72,11 +68,10 @@ namespace CardsLang
         }
         private void createNewSubject(string listName)
         {            
-            NewSubject _newSubjectWin = new NewSubject(_listsControl);
+            NewSubject _newSubjectWin = new NewSubject(_listsControl, listName);
             host.Content = _newSubjectWin;
             host.Show();
-            loadNewSubjectWin(_newSubjectWin);
-            _newSubjectWin.textBoxSubject.Text = listName;
+            loadNewSubjectWin(_newSubjectWin);            
             listBoxLists.ItemsSource = _listsControl.CardLists.Keys.ToList();
             textBoxListName.Clear();
             
@@ -84,7 +79,6 @@ namespace CardsLang
         private void loadNewSubjectWin(NewSubject _newSubjectWin)
         {
             foreach (Window window in App.Current.Windows)
-
             {
                 if (window.Content == _newSubjectWin)
                 {
@@ -93,6 +87,7 @@ namespace CardsLang
                 else window.Hide();
             }
         }
+       
 
         private void listBoxLists_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -177,6 +172,14 @@ namespace CardsLang
         {
 
             createNewSubject(textBoxListName.Text.ToString().Trim());
+        }
+
+        private void buttonBack_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow window = new MainWindow(_listsControl);
+            window.Show();
+            
+            
         }
     }
 }

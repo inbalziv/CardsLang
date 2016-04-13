@@ -26,9 +26,9 @@
             <Button x:Name="buttonDone" Content="Done" HorizontalAlignment="Left" Margin="237,258,0,0" VerticalAlignment="Top" Width="39" RenderTransformOrigin="-0.051,0.05" Click="buttonDone_Click"/>
             <Button x:Name="buttonUpdateCard" Content="Update" HorizontalAlignment="Left" Height="21" Margin="214,117,0,0" VerticalAlignment="Top" Width="62" Click="buttonUpdateCard_Click"/>
             <DataGrid x:Name="dataGridCards" HorizontalAlignment="Left" Height="166" Margin="15,112,0,0" VerticalAlignment="Top" Width="174" SelectionChanged="dataGrid_SelectionChanged" SelectionMode="Single" SelectionUnit="FullRow"
-                      RowHeight="30" ColumnWidth="100" HeadersVisibility="All" BorderBrush="Gray" BorderThickness="5" IsReadOnly="True" CanUserReorderColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}" FontStyle="Normal" Background="LightGray">
+                      RowHeight="20" ColumnWidth="100" HeadersVisibility="All" BorderBrush="Gray" BorderThickness="5" IsReadOnly="True" CanUserReorderColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}" FontStyle="Normal" Background="LightGray">
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="dataGridFront" Header="Front" Binding="{Binding Path=_front}" Width="0.1*"/>
+                    <DataGridTextColumn Header="Front" Binding="{Binding Path=_front}" Width="0.1*"/>
                     <DataGridTextColumn Header="Back" Binding="{Binding Path=_back}" Width="0.1*"/>
                 </DataGrid.Columns>
             </DataGrid>

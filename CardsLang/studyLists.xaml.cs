@@ -21,10 +21,12 @@ namespace CardsLang
     public partial class studyLists : Page
     {
         
-        private AddLists _studyLists = new AddLists();
-        public studyLists()
+        private AddLists _studyLists;
+        public studyLists(AddLists studyLists)
         {
             InitializeComponent();
+            _studyLists = studyLists;
+            
             buttonStartStudy.Visibility = Visibility.Hidden;
             //TBD: if no subjects, change text + hide list box
             // else: fill box list
@@ -53,16 +55,11 @@ namespace CardsLang
             //TBD; close this window and show main
         }
         private void fillBoxList()
-        {
-            //List<CardsList> _cardsList = new List<CardsList>();
-            /* if (_studyLists != null)
+        {             
+             if (_studyLists != null)
              {
-                 foreach (var item in this._studyLists)
-                 {
-                     listBoxSubjects.Items.Add(item.getSubject());
-
-                 }
-             }*/
+                 listBoxSubjects.ItemsSource = _studyLists.CardLists.Keys.ToList();
+             }
         }
     }
 }

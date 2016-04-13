@@ -29,16 +29,18 @@ namespace CardsLang
         private AddLists _listsBuild;
         public Window host = new Window();
         
-        public NewSubject(AddLists listsBuild)
+        public NewSubject(AddLists listsBuild, string listName)
         {
             
             InitializeComponent();
             _listsBuild = listsBuild;
             _cards = new List<Card>();
-            
+            textBoxSubject.Text = listName;            
+            textBoxSubject.IsReadOnly = true;
             updateDataGrid();            
             hideListsControl();
-            textBoxSubject.IsReadOnly = true;
+            
+
             buttonUpdateCard.Visibility = Visibility.Hidden;
             buttonDelete.Visibility = Visibility.Hidden;
 
@@ -71,9 +73,7 @@ namespace CardsLang
           {
               //ListsControl.VisibilityProperty = VisibilityProperty.hi
           }
-
-
-
+        
           private void clearTextbox()
           {
               textBoxFront.Text = "";
@@ -124,7 +124,6 @@ namespace CardsLang
               host.Content = _listControlWin;
               host.Show();
               foreach (Window window in App.Current.Windows)
-
               {
                   if (window.Content == _listControlWin)
                   {
