@@ -42,8 +42,7 @@ namespace CardsLang
             else
             {
                 _listControlWin = new ListsControl(_lists);
-            }
-            
+            }         
 
             host.Content = _listControlWin;
             host.Show();
@@ -59,6 +58,23 @@ namespace CardsLang
                 }
                 else window.Hide();
             }
+        }
+
+        private void buttonStudy_Click(object sender, RoutedEventArgs e)
+        {
+            studyLists _studyListsWin;
+            var host = new Window();
+            if (_lists == null)
+            {
+                MessageBox.Show("No lists to study added, please add lists first","Error");
+            }
+            else
+            {
+                _studyListsWin = new studyLists(_lists);
+                host.Content = _studyListsWin;
+                host.Show();
+                this.Close();
+            }            
         }
     }
 }
