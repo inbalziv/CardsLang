@@ -19,7 +19,7 @@ namespace CardsLang
 {
     /// <summary>
     /// Interaction logic for ListsControl.xaml
-    /// </summary> added
+    /// </summary> 
     public partial class ListsControl : Page
     {
         // List<CardsList> _cardsList = new List<CardsList>();   
