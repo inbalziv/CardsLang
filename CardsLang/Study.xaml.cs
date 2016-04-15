@@ -22,12 +22,13 @@ namespace CardsLang
     {
         public bool _isRandom { get; private set; }
         public bool _isFrontFirst { get; private set; }
-
-        public Study(bool isRandom, bool isFrontFirst)
+        private List<Card> _studyCards;
+        public Study(bool isRandom, bool isFrontFirst, List<Card> studyCards)
         {
             InitializeComponent();
             this._isRandom = isRandom;
             this._isFrontFirst = isFrontFirst;
+            _studyCards = studyCards;
             startStudy();
         }
         private void startStudy()

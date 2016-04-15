@@ -20,9 +20,12 @@ namespace CardsLang
     /// </summary>
     public partial class studyOptions : Page
     {
-        public studyOptions()
+        private List<Card> _CardsStudy;
+        Study _studyWin;
+        public studyOptions(List<Card> cardsListStudy)
         {
             InitializeComponent();
+            _CardsStudy = cardsListStudy;
             radioButtonFront.IsChecked = true;
             radioButtonBack.IsChecked = false;
         }
@@ -30,11 +33,24 @@ namespace CardsLang
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
             
-            Study _studyWin = new Study(checkBoxRandom.IsChecked.Value, radioButtonFront.IsChecked.Value);            
+            _studyWin = new Study(checkBoxRandom.IsChecked.Value, radioButtonFront.IsChecked.Value, _CardsStudy);            
             var hostStudy = new Window();
             hostStudy.Content = _studyWin;
             hostStudy.Show();
-            
+            hideThisWin();
+
+
+        }
+        private void hideThisWin()
+        {
+            foreach (Window window in App.Current.Windows)
+            {
+                if (window.Content == _studyWin)
+                {
+                    window.Show();
+                }
+                else window.Close();
+            }
         }
     }
 }

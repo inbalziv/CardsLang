@@ -24,12 +24,13 @@ namespace CardsLang
         public MainWindow()
         {
             InitializeComponent();
+            hideOtherWin();
         }
         public MainWindow(AddLists lists)
         {
             InitializeComponent();
             _lists = lists;
-            hideListsControlWin();
+            hideOtherWin();
         }
         private void Start_Click(object sender, RoutedEventArgs e)
         {
@@ -48,7 +49,7 @@ namespace CardsLang
             host.Show();
             this.Close();
         }
-        private void hideListsControlWin()
+        private void hideOtherWin()
         {
             foreach (Window window in App.Current.Windows)
             {

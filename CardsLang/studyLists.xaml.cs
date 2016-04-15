@@ -22,37 +22,62 @@ namespace CardsLang
     {
         
         private AddLists _studyLists;
+        private studyOptions _studyOptions;
         public studyLists(AddLists studyLists)
         {
             InitializeComponent();
             _studyLists = studyLists;
             
             buttonStartStudy.Visibility = Visibility.Hidden;
-            //TBD: if no subjects, change text + hide list box
-            // else: fill box list
-            fillBoxList();
+            if (_studyLists.CardLists.Count() <= 0)
+            {
+                labelStudy.Content = "No Lists added yet";
+                listBoxSubjects.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                fillBoxList();
+            }
+            
+            
         }
 
         private void listBoxSubjects_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             buttonStartStudy.Visibility = Visibility.Visible;
-            _studyLists.CardLists.Keys.ToList();
+           // _studyLists.CardLists.Keys.ToList();
 
         }
 
         private void buttonStartStudy_Click(object sender, RoutedEventArgs e)
         {
-            studyOptions _studyOptions = new studyOptions();
-            //Load window - study options
-            var hostStudy = new Window();
-            hostStudy.Content = _studyOptions;
-            hostStudy.Show();
-           // this.Close();
+            List<Card> _cardsListStudy;
+            if (_studyLists.CardLists.TryGetValue(listBoxSubjects.SelectedValue.ToString(), out _cardsListStudy))
+            {
+                _studyOptions = new studyOptions(_cardsListStudy);
+                //Load window - study options
+                var hostStudy = new Window();
+                hostStudy.Content = _studyOptions;
+                hostStudy.Show();
+                hideThisWin();
+                // this.Close();
+            }
         }
-
+        private void hideThisWin()
+        {
+            foreach (Window window in App.Current.Windows)
+            {
+                if (window.Content == _studyOptions)
+                {
+                    window.Show();
+                }
+                else window.Hide();
+            }
+        }
         private void buttonBack_Click(object sender, RoutedEventArgs e)
         {
-            //TBD; close this window and show main
+            MainWindow window = new MainWindow();
+            window.Show();
         }
         private void fillBoxList()
         {             

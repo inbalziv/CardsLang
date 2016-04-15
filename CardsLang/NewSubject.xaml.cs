@@ -129,7 +129,7 @@ namespace CardsLang
                   {
                       window.Show();
                   }
-                  else window.Hide();
+                  else window.Close();
               }
           }
           private void buttonUpdateCard_Click(object sender, RoutedEventArgs e)
