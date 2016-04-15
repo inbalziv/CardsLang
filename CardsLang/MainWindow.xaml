@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CardsLang"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="325">
     <Grid>
         <Grid>
             <Grid.Background>
@@ -14,8 +14,8 @@
                     <GradientStop Offset="1" Color="Gray"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            <Button x:Name="Start" Content="Start" Margin="200.024,131.78,200.878,140.268" FontSize="16" Click="Start_Click"/>
-            <Button x:Name="buttonStudy" Content="Study" HorizontalAlignment="Left" Height="48" Margin="200,217,0,0" VerticalAlignment="Top" Width="116" Click="buttonStudy_Click"/>
+            <Button x:Name="Start" Content="Start" Margin="38,125,69,119" FontSize="16" Click="Start_Click" Width="210" Height="75"/>
+            <Button x:Name="buttonStudy" Content="Study" HorizontalAlignment="Left" FontSize="16" Height="75" Margin="38,26,0,217"  Width="210" Click="buttonStudy_Click"/>
 
         </Grid>
 

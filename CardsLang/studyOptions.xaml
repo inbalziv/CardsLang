@@ -4,17 +4,16 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CardsLang"
-      mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
-      Title="studyOptions">
+      mc:Ignorable="d"
+      Title="studyOptions" Height="247.872" Width="227.66">
 
     <Grid Background="#FFC5C5C5">
-        <CheckBox x:Name="checkBoxRandom" Content="Random" HorizontalAlignment="Left" Height="25" Margin="38,97,0,0" VerticalAlignment="Top" Width="84" IsThreeState="True"/>
-        <RadioButton x:Name="radioButtonBack" Content="Back first" HorizontalAlignment="Left" Height="20" Margin="38,205,0,0" VerticalAlignment="Top" Width="84"/>
-        <RadioButton x:Name="radioButtonFront" Content="Front first" HorizontalAlignment="Left" Height="34" Margin="38,171,0,0" VerticalAlignment="Top" Width="84" IsChecked="True"/>
-        <Label x:Name="labelOptions" Content="Choose study settings" HorizontalAlignment="Left" Height="31" Margin="38,30,0,0" VerticalAlignment="Top" Width="128"/>
-        <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Height="36" Margin="186,225,0,0" VerticalAlignment="Top" Width="71" Click="buttonStart_Click"/>
-        <Button x:Name="buttonBack" Content="Back" HorizontalAlignment="Left" Height="29" Margin="38,242,0,0" VerticalAlignment="Top" Width="84"/>
+        <CheckBox x:Name="checkBoxRandom" Content="Random" HorizontalAlignment="Left" Height="25" Margin="23,58,0,0" VerticalAlignment="Top" Width="84" IsThreeState="True"/>
+        <RadioButton x:Name="radioButtonBack" Content="Back first" HorizontalAlignment="Left" Height="20" Margin="112,88,0,0" VerticalAlignment="Top" Width="84"/>
+        <RadioButton x:Name="radioButtonFront" Content="Front first" HorizontalAlignment="Left" Height="34" Margin="23,88,0,0" VerticalAlignment="Top" Width="84" IsChecked="True"/>
+        <Label x:Name="labelOptions" Content="Choose study settings" HorizontalAlignment="Left" Height="31" Margin="23,21,0,0" VerticalAlignment="Top" Width="128"/>
+        <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Height="36" Margin="45,140,0,0" VerticalAlignment="Top" Width="151" Click="buttonStart_Click"/>
+        <Button x:Name="buttonBack" Content="Back" HorizontalAlignment="Left" Height="29" Margin="23,203,0,0" VerticalAlignment="Top" Width="84"/>
 
     </Grid>
 </Page>

@@ -51,10 +51,10 @@ namespace CardsLang
 
         private void buttonStartStudy_Click(object sender, RoutedEventArgs e)
         {
-            List<Card> _cardsListStudy;
-            if (_studyLists.CardLists.TryGetValue(listBoxSubjects.SelectedValue.ToString(), out _cardsListStudy))
+            
+            if (listBoxSubjects.SelectedValue.ToString() != null)
             {
-                _studyOptions = new studyOptions(_cardsListStudy);
+                _studyOptions = new studyOptions(_studyLists, listBoxSubjects.SelectedValue.ToString());
                 //Load window - study options
                 var hostStudy = new Window();
                 hostStudy.Content = _studyOptions;
@@ -71,7 +71,7 @@ namespace CardsLang
                 {
                     window.Show();
                 }
-                else window.Hide();
+                else window.Close();
             }
         }
         private void buttonBack_Click(object sender, RoutedEventArgs e)
