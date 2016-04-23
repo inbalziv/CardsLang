@@ -57,7 +57,10 @@ namespace CardsLang
                 _studyOptions = new studyOptions(_studyLists, listBoxSubjects.SelectedValue.ToString());
                 //Load window - study options
                 var hostStudy = new Window();
+                hostStudy.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 hostStudy.Content = _studyOptions;
+                hostStudy.SizeToContent = SizeToContent.Width;
+                hostStudy.Height = 310;
                 hostStudy.Show();
                 hideThisWin();
                 // this.Close();
@@ -69,6 +72,7 @@ namespace CardsLang
             {
                 if (window.Content == _studyOptions)
                 {
+                    window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                     window.Show();
                 }
                 else window.Close();
@@ -77,6 +81,7 @@ namespace CardsLang
         private void buttonBack_Click(object sender, RoutedEventArgs e)
         {
             MainWindow window = new MainWindow();
+            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             window.Show();
         }
         private void fillBoxList()

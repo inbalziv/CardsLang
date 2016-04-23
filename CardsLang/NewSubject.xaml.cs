@@ -38,8 +38,7 @@ namespace CardsLang
             textBoxSubject.Text = listName;            
             textBoxSubject.IsReadOnly = true;
             updateDataGrid();            
-            hideListsControl();
-            
+            hideListsControl();            
 
             buttonUpdateCard.Visibility = Visibility.Hidden;
             buttonDelete.Visibility = Visibility.Hidden;
@@ -121,15 +120,20 @@ namespace CardsLang
           private void loadListsControlWin()
           {
               ListsControl _listControlWin = new ListsControl(_listsBuild);
+              
               host.Content = _listControlWin;
+              host.WindowStartupLocation = WindowStartupLocation.CenterScreen;
               host.Show();
               foreach (Window window in App.Current.Windows)
               {
                   if (window.Content == _listControlWin)
                   {
-                      window.Show();
+                    host.SizeToContent = SizeToContent.Width;
+                    host.Height = 330;
+                    window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                    window.Show();
                   }
-                  else window.Close();
+                  else window.Hide();
               }
           }
           private void buttonUpdateCard_Click(object sender, RoutedEventArgs e)

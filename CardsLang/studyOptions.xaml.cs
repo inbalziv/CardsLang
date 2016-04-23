@@ -36,9 +36,12 @@ namespace CardsLang
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
             
-            _studyWin = new Study(checkBoxRandom.IsChecked.Value, radioButtonFront.IsChecked.Value, _dictLists, _key);            
+            _studyWin = new Study(checkBoxRandom.IsChecked.Value, radioButtonFront.IsChecked.Value, checkBoxRepeat.IsChecked.Value, _dictLists, _key);            
             var hostStudy = new Window();
+            hostStudy.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             hostStudy.Content = _studyWin;
+            hostStudy.Width = 350;
+            hostStudy.Height = 405;
             hostStudy.Show();
             hideThisWin();
 

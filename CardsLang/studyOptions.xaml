@@ -5,15 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CardsLang"
       mc:Ignorable="d"
-      Title="studyOptions" Height="247.872" Width="227.66">
+      Title="studyOptions" Height="290.085" Width="285.703">
 
-    <Grid Background="#FFC5C5C5">
+    <Grid Background="#FFC5C5C5" Margin="0,0,0,10">
         <CheckBox x:Name="checkBoxRandom" Content="Random" HorizontalAlignment="Left" Height="25" Margin="23,58,0,0" VerticalAlignment="Top" Width="84" IsThreeState="True"/>
-        <RadioButton x:Name="radioButtonBack" Content="Back first" HorizontalAlignment="Left" Height="20" Margin="112,88,0,0" VerticalAlignment="Top" Width="84"/>
-        <RadioButton x:Name="radioButtonFront" Content="Front first" HorizontalAlignment="Left" Height="34" Margin="23,88,0,0" VerticalAlignment="Top" Width="84" IsChecked="True"/>
-        <Label x:Name="labelOptions" Content="Choose study settings" HorizontalAlignment="Left" Height="31" Margin="23,21,0,0" VerticalAlignment="Top" Width="128"/>
-        <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Height="36" Margin="45,140,0,0" VerticalAlignment="Top" Width="151" Click="buttonStart_Click"/>
-        <Button x:Name="buttonBack" Content="Back" HorizontalAlignment="Left" Height="29" Margin="23,203,0,0" VerticalAlignment="Top" Width="84"/>
+        <RadioButton x:Name="radioButtonBack" Content="Back first" HorizontalAlignment="Left" Height="20" Margin="139,92,0,0" VerticalAlignment="Top" Width="110"/>
+        <RadioButton x:Name="radioButtonFront" Content="Front first" HorizontalAlignment="Left" Height="34" Margin="23,92,0,0" VerticalAlignment="Top" Width="104" IsChecked="True"/>
+        <Label x:Name="labelOptions" Content="Choose study settings" HorizontalAlignment="Left" Height="31" Margin="23,10,0,0" VerticalAlignment="Top" Width="179" FontWeight="SemiBold"/>
+        <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Height="32" Margin="23,149,0,0" VerticalAlignment="Top" Width="226" Click="buttonStart_Click"/>
+        <Button x:Name="buttonBack" Content="Back" HorizontalAlignment="Left" Height="32" Margin="23,216,0,0" VerticalAlignment="Top" Width="226"/>
+        <CheckBox x:Name="checkBoxRepeat" Content="Repeat on fails" HorizontalAlignment="Left" Height="25" Margin="139,58,0,0" VerticalAlignment="Top" Width="130" IsThreeState="True"/>
 
     </Grid>
 </Page>

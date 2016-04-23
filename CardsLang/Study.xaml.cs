@@ -23,21 +23,23 @@ namespace CardsLang
         private int _count;
         private int _succeedCount;
         private int _totalCards;
-        public bool _isFrontFirst { get; private set; }
+        private bool _isRepeat;
+        public bool _isFrontFirst;
         private List<Card> _studyCards;
         private studyLists _studyListsWin;
         private AddLists _dictLists;        
         string _key;
-        public Study(bool isRandom, bool isFrontFirst, AddLists dictLists, string key)
+        public Study(bool isRandom, bool isFrontFirst, bool isRepeat, AddLists dictLists, string key)
         {
             InitializeComponent();
             _dictLists = dictLists;
             this._isFrontFirst = isFrontFirst;
+            _isRepeat = isRepeat;
             _count = 0;
             _succeedCount = 0;
-            _key = key;
-            initialDisaply();
+            _key = key;            
             prepareStudy(isRandom);
+            initialDisaply();
             study();
         }
         private void prepareStudy(bool isRandom)
@@ -58,12 +60,17 @@ namespace CardsLang
         private void initialDisaply()
         {
             labelCount.Content = _count.ToString() + " out of " + _totalCards.ToString();
-            labelAvg.Content = "Avarage - 0%";
+            if (_totalCards > 0)
+            {
+                labelAvg.Content = "Avarage - " + _count / _totalCards * 100 + "%";
+            }
+            progressBarStudy.Value = 0;
             buttonCorrect.Visibility = Visibility.Hidden;
             buttonNot.Visibility = Visibility.Hidden;
             buttonNext.Visibility = Visibility.Hidden;
             buttonShow.Visibility = Visibility.Visible;
             labelGrade.Visibility = Visibility.Hidden;
+            
 
         }
         private void study()
@@ -124,6 +131,7 @@ namespace CardsLang
         private void buttonCorrect_Click(object sender, RoutedEventArgs e)
         {
             _succeedCount++;
+            progressBarStudy.Value++;
             disaplyGrade();
         }
 
@@ -143,6 +151,10 @@ namespace CardsLang
             labelCount.Content = _count.ToString() + " out of " + _totalCards.ToString();
             if (_count < _totalCards)
                 buttonNext.Visibility = Visibility.Visible;
+            if (_totalCards > 0)
+            {
+                labelAvg.Content = "Avarage - " + _count / _totalCards * 100 + "%";
+            }
         }
 
         private void buttonNext_Click(object sender, RoutedEventArgs e)
@@ -160,7 +172,10 @@ namespace CardsLang
 
             _studyListsWin = new studyLists(_dictLists);
             var hostStudy = new Window();
+            hostStudy.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             hostStudy.Content = _studyListsWin;
+            hostStudy.Width = 330;
+            hostStudy.Height = 310;
             hostStudy.Show();
             hideThisWin();
         }
@@ -174,6 +189,11 @@ namespace CardsLang
                 }
                 else window.Close();
             }
+        }
+
+        private void ProgressBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            
         }
     }
 }

@@ -5,10 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CardsLang"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="369" d:DesignWidth="349"
       Title="Study">
 
-    <Grid RenderTransformOrigin="0.5,0.5">
+    <Grid RenderTransformOrigin="0.5,0.5" Margin="0,0,0,1">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Offset="0" Color="Silver"/>
@@ -23,8 +23,8 @@
                 <TranslateTransform/>
             </TransformGroup>
         </Grid.RenderTransform>
-        <Button x:Name="buttonNext" Content="Next" HorizontalAlignment="Left" Height="29" Margin="50,193,0,0" VerticalAlignment="Top" Width="212" Click="buttonNext_Click"/>
-        <Label x:Name="labelFront" Content="Label" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="63" Margin="44,10,0,0" VerticalAlignment="Top" Width="212" BorderBrush="Gray" BorderThickness="2" FontSize="15">
+        <Button x:Name="buttonNext" Content="Next" HorizontalAlignment="Left" Height="33" Margin="60,219,0,0" VerticalAlignment="Top" Width="238" Click="buttonNext_Click"/>
+        <Label x:Name="labelFront" Content="Label" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="60" Margin="60,25,0,0" VerticalAlignment="Top" Width="238" BorderBrush="Gray" BorderThickness="2" FontSize="15">
             <Label.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Offset="0" Color="Silver"/>
@@ -32,7 +32,7 @@
                 </LinearGradientBrush>
             </Label.Background>
         </Label>
-        <Label x:Name="labelBack" Content="Label" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="63" Margin="44,78,0,0" VerticalAlignment="Top" Width="212" BorderBrush="Gray" BorderThickness="2" FontSize="15">
+        <Label x:Name="labelBack" Content="Label" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="60" Margin="60,104,0,0" VerticalAlignment="Top" Width="238" BorderBrush="Gray" BorderThickness="2" FontSize="15">
             <Label.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Offset="0" Color="Silver"/>
@@ -40,13 +40,14 @@
                 </LinearGradientBrush>
             </Label.Background>
         </Label>
-        <Label x:Name="labelCount" Content="" HorizontalAlignment="Left" Height="23" Margin="183,267,0,0" VerticalAlignment="Top" Width="97"/>
-        <Label x:Name="labelAvg" Content="Label" HorizontalAlignment="Left" Height="23" Margin="227,228,0,0" VerticalAlignment="Top" Width="53"/>
-        <Button x:Name="buttonDone" Content="Done" HorizontalAlignment="Left" Height="23" Margin="10,267,0,0" VerticalAlignment="Top" Width="52" Click="buttonDone_Click"/>
-        <Button x:Name="buttonCorrect" Content="Correct" HorizontalAlignment="Left" Height="28" Margin="78,160,0,0" VerticalAlignment="Top" Width="46" Click="buttonCorrect_Click"/>
-        <Button x:Name="buttonNot" Content="Not" HorizontalAlignment="Left" Height="28" Margin="124,160,0,0" VerticalAlignment="Top" Width="46" Click="buttonNot_Click"/>
-        <Label x:Name="labelGrade" Content="Choose" HorizontalAlignment="Left" Height="28" Margin="10,160,0,0" VerticalAlignment="Top" Width="52"/>
-        <Button x:Name="buttonShow" Content="Click here to see the answer" HorizontalAlignment="Left" Height="28" Margin="50,160,0,0" VerticalAlignment="Top" Width="212" Click="buttonShow_Click"/>
+        <Label x:Name="labelCount" Content="count" HorizontalAlignment="Left" Height="30" Margin="60,264,0,0" VerticalAlignment="Top" Width="97"/>
+        <Label x:Name="labelAvg" Content="Avg" HorizontalAlignment="Left" Height="30" Margin="176,264,0,0" VerticalAlignment="Top" Width="122"/>
+        <Button x:Name="buttonDone" Content="Done" HorizontalAlignment="Left" Height="33" Margin="19,316,0,0" VerticalAlignment="Top" Width="52" Click="buttonDone_Click"/>
+        <Button x:Name="buttonCorrect" Content="Correct" HorizontalAlignment="Left" Height="33" Margin="60,219,0,0" VerticalAlignment="Top" Width="106" Click="buttonCorrect_Click"/>
+        <Button x:Name="buttonNot" Content="Not" HorizontalAlignment="Left" Height="33" Margin="192,219,0,0" VerticalAlignment="Top" Width="106" Click="buttonNot_Click" RenderTransformOrigin="1.022,0.576"/>
+        <Label x:Name="labelGrade" Content="Choose" HorizontalAlignment="Left" Height="30" Margin="60,184,0,0" VerticalAlignment="Top" Width="74"/>
+        <Button x:Name="buttonShow" Content="Click here to see the answer" HorizontalAlignment="Left" Height="33" Margin="60,180,0,0" VerticalAlignment="Top" Width="238" Click="buttonShow_Click"/>
+        <ProgressBar x:Name="progressBarStudy" HorizontalAlignment="Left" Height="30" Margin="143,319,0,0" VerticalAlignment="Top" Width="155" ValueChanged="ProgressBar_ValueChanged"/>
 
     </Grid>
 </Page>

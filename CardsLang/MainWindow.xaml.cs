@@ -24,6 +24,7 @@ namespace CardsLang
         public MainWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             hideOtherWin();
         }
         public MainWindow(AddLists lists)
@@ -43,9 +44,11 @@ namespace CardsLang
             else
             {
                 _listControlWin = new ListsControl(_lists);
-            }         
-
+            }
+            host.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             host.Content = _listControlWin;
+            host.SizeToContent = SizeToContent.Width;
+            host.Height = 330;
             host.Show();
             this.Close();
         }
@@ -55,6 +58,7 @@ namespace CardsLang
             {
                 if (this == window)
                 {
+                    window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                     window.Show();
                 }
                 else window.Hide();
@@ -72,7 +76,10 @@ namespace CardsLang
             else
             {
                 _studyListsWin = new studyLists(_lists);
+                host.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 host.Content = _studyListsWin;
+                host.Width = 300;
+                host.Height = 310;
                 host.Show();
                 this.Close();
             }            

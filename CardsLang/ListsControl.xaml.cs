@@ -33,6 +33,7 @@ namespace CardsLang
             buttonAddList.Visibility = Visibility.Visible;
             buttonEdit.Visibility = Visibility.Hidden;
             buttonDelete.Visibility = Visibility.Hidden;
+            
         }
         public ListsControl(AddLists listsControl)
         {
@@ -68,8 +69,11 @@ namespace CardsLang
         }
         private void createNewSubject(string listName)
         {            
-            NewSubject _newSubjectWin = new NewSubject(_listsControl, listName);
+            NewSubject _newSubjectWin = new NewSubject(_listsControl, listName);            
             host.Content = _newSubjectWin;
+            host.Width = 370;
+            host.Height = 330;
+            host.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             host.Show();
             loadNewSubjectWin(_newSubjectWin);            
             listBoxLists.ItemsSource = _listsControl.CardLists.Keys.ToList();
@@ -82,6 +86,7 @@ namespace CardsLang
             {
                 if (window.Content == _newSubjectWin)
                 {
+                    window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                     window.Show();
                 }
                 else window.Hide();
@@ -177,6 +182,7 @@ namespace CardsLang
         private void buttonBack_Click(object sender, RoutedEventArgs e)
         {
             MainWindow window = new MainWindow(_listsControl);
+            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             window.Show();
             
             
