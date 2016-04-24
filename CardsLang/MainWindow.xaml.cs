@@ -17,13 +17,15 @@ namespace CardsLang
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
         private AddLists _lists;
+        private FileImplementaion _cardsFile;
         public MainWindow()
         {
             InitializeComponent();
+            _cardsFile = new FileImplementaion();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             hideOtherWin();
         }
@@ -39,6 +41,7 @@ namespace CardsLang
             var host = new Window();
             if (_lists == null)
             {
+                _cardsFile.getDictFromFile();
                 _listControlWin = new ListsControl();
             }
             else

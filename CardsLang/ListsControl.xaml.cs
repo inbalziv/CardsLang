@@ -22,13 +22,14 @@ namespace CardsLang
     /// </summary> 
     public partial class ListsControl : Page
     {
-        
+        private FileImplementaion _cardsFile;
         public Window host = new Window();            
         private AddLists _listsControl;
         public ListsControl()
         {
             InitializeComponent();
             _listsControl = new AddLists();
+            _cardsFile = new FileImplementaion();
             buttonUpdate.Visibility = Visibility.Hidden;
             buttonAddList.Visibility = Visibility.Visible;
             buttonEdit.Visibility = Visibility.Hidden;
@@ -146,7 +147,7 @@ namespace CardsLang
             {
 
                 deleteList();
-                // listBoxLists.DataContext = _cardsList;
+                
                 buttonUpdate.Visibility = Visibility.Hidden;
                 buttonAddList.Visibility = Visibility.Visible;
                 buttonEdit.Visibility = Visibility.Hidden;
@@ -163,6 +164,7 @@ namespace CardsLang
                 if (_listsControl.deleteCardsList(_removeSubject))
                 {
                     listBoxLists.Items.RemoveAt(_indexDelete);
+                    _cardsFile.saveDictToFile(_listsControl.CardLists);
                     clearTextbox();
                 }
             }

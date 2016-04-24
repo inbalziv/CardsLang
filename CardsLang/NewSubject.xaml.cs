@@ -17,6 +17,7 @@ using System.Drawing;
 
 
 
+
 namespace CardsLang
 {
     /// <summary>
@@ -27,6 +28,7 @@ namespace CardsLang
     {
         private List<Card> _cards;         
         private AddLists _listsBuild;
+        private FileImplementaion _cardsFile;
         public Window host = new Window();
         
         public NewSubject(AddLists listsBuild, string listName)
@@ -34,6 +36,7 @@ namespace CardsLang
             
             InitializeComponent();
             _listsBuild = listsBuild;
+            _cardsFile = new FileImplementaion();
             _cards = new List<Card>();
             textBoxSubject.Text = listName;            
             textBoxSubject.IsReadOnly = true;
@@ -114,9 +117,12 @@ namespace CardsLang
 
           private void buttonDone_Click(object sender, RoutedEventArgs e)
           {
-              loadListsControlWin();
+            
+            _cardsFile.saveDictToFile(_listsBuild.CardLists);              
+            loadListsControlWin();
 
           }
+          
           private void loadListsControlWin()
           {
               ListsControl _listControlWin = new ListsControl(_listsBuild);
