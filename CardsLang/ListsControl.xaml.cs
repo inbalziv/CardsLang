@@ -38,7 +38,8 @@ namespace CardsLang
         }
         public ListsControl(AddLists listsControl)
         {
-            InitializeComponent();            
+            InitializeComponent();
+            _cardsFile = new FileImplementaion();
             _listsControl = listsControl;           
             listBoxLists.ItemsSource = _listsControl.CardLists.Keys.ToList();
             buttonUpdate.Visibility = Visibility.Hidden;
@@ -114,7 +115,8 @@ namespace CardsLang
             if (_listsControl.updateListName(_updatedName, listBoxLists.SelectedValue.ToString()))
             {
                 updateBoxList(_updatedName, listBoxLists.SelectedIndex);
-                clearTextbox();                
+                clearTextbox();
+                _cardsFile.saveDictToFile(_listsControl.CardLists);
                 buttonUpdate.Visibility = Visibility.Hidden;
                 buttonAddList.Visibility = Visibility.Visible;
                 buttonEdit.Visibility = Visibility.Hidden;
@@ -163,7 +165,7 @@ namespace CardsLang
             {
                 if (_listsControl.deleteCardsList(_removeSubject))
                 {
-                    listBoxLists.Items.RemoveAt(_indexDelete);
+                    listBoxLists.ItemsSource = _listsControl.CardLists.Keys.ToList();                   
                     _cardsFile.saveDictToFile(_listsControl.CardLists);
                     clearTextbox();
                 }

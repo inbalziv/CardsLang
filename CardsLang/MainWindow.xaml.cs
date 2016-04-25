@@ -24,7 +24,7 @@ namespace CardsLang
         private FileImplementaion _cardsFile;
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();            
             _cardsFile = new FileImplementaion();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             hideOtherWin();
@@ -41,8 +41,14 @@ namespace CardsLang
             var host = new Window();
             if (_lists == null)
             {
-                _cardsFile.getDictFromFile();
-                _listControlWin = new ListsControl();
+                if (_cardsFile.getDictFromFile() == null)
+                    _listControlWin = new ListsControl();
+                else
+                {
+                    _lists = new AddLists();
+                    _lists.CardLists = _cardsFile.getDictFromFile();
+                    _listControlWin = new ListsControl(_lists);
+                }
             }
             else
             {

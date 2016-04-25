@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace CardsLang
 {
     public class AddLists
     {
-        //  public Dictionary<string, List<Card>> _cardsList { get; set; }
+        
         private Dictionary<string, List<Card>> _cardsList;
-        // private List<Card> _cards;
+        
         public AddLists()
         {
             _cardsList = new Dictionary<string, List<Card>>();
-            //  _cards = new List<Card>();
+            
         }
-
+        
         public Dictionary<string, List<Card>> CardLists
         {
             get
