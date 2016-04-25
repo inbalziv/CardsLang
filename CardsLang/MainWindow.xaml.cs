@@ -32,6 +32,7 @@ namespace CardsLang
         public MainWindow(AddLists lists)
         {
             InitializeComponent();
+            _cardsFile = new FileImplementaion();
             _lists = lists;
             hideOtherWin();
         }
@@ -78,12 +79,16 @@ namespace CardsLang
         {
             studyLists _studyListsWin;
             var host = new Window();
-            if (_lists == null)
-            {
-                MessageBox.Show("No lists to study added, please add lists first","Error");
-            }
+            if (_cardsFile.getDictFromFile() == null)
+                    MessageBox.Show("No lists to study added, please add lists first", "Error");
+                     
             else
             {
+                if (_lists == null)
+                {
+                    _lists = new AddLists();
+                    _lists.CardLists = _cardsFile.getDictFromFile();
+                }            
                 _studyListsWin = new studyLists(_lists);
                 host.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 host.Content = _studyListsWin;

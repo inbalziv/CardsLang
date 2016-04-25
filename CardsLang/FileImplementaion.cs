@@ -25,7 +25,8 @@ namespace CardsLang
             if (!File.Exists(filePath))
             {
                 if (!Directory.Exists(Path.GetDirectoryName(filePath)))
-                    Directory.CreateDirectory(Path.GetDirectoryName(filePath));     
+                    Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+                File.WriteAllText(filePath, "");
             }
             return File.ReadAllText(filePath); 
             
@@ -34,18 +35,22 @@ namespace CardsLang
         {
             Dictionary<string, List<Card>> dict = new Dictionary<string, List<Card>>();            
             string tempList;
-            Dictionary<string, object> dictTemp = JsonConvert.DeserializeObject<Dictionary<string, object>>(GetOrCreateFile());
-            foreach (var obj in dictTemp)
-            {              
-                dict.Add(obj.Key, new List<Card>());
-                tempList = obj.Value.ToString();               
-                List<object> jsonObject = JsonConvert.DeserializeObject<List<object>>(tempList);                
-                foreach (var row in jsonObject)
-                {                   
-                    var _cards = JsonConvert.DeserializeObject<dynamic>(row.ToString());                    
-                    dict[obj.Key].Add(new Card(_cards._front.Value, _cards._back.Value));
-                }
+            string fileData = GetOrCreateFile();
+            if (GetOrCreateFile() != "")
+            {
+                Dictionary<string, object> dictTemp = JsonConvert.DeserializeObject<Dictionary<string, object>>(GetOrCreateFile());
+                foreach (var obj in dictTemp)
+                {
+                    dict.Add(obj.Key, new List<Card>());
+                    tempList = obj.Value.ToString();
+                    List<object> jsonObject = JsonConvert.DeserializeObject<List<object>>(tempList);
+                    foreach (var row in jsonObject)
+                    {
+                        var _cards = JsonConvert.DeserializeObject<dynamic>(row.ToString());
+                        dict[obj.Key].Add(new Card(_cards._front.Value, _cards._back.Value));
+                    }
 
+                }
             }
             return dict;
 

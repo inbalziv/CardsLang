@@ -80,7 +80,7 @@ namespace CardsLang
         }
         private void buttonBack_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow window = new MainWindow();
+            MainWindow window = new MainWindow(_studyLists);
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             window.Show();
         }
