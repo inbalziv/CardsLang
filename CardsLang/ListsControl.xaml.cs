@@ -72,9 +72,9 @@ namespace CardsLang
         private void createNewSubject(string listName)
         {            
             NewSubject _newSubjectWin = new NewSubject(_listsControl, listName);            
-            host.Content = _newSubjectWin;
-            host.Width = 370;
-            host.Height = 330;
+            host.Content = _newSubjectWin;            
+            host.Width = 430;
+            host.Height = 420;
             host.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             host.Show();
             loadNewSubjectWin(_newSubjectWin);            

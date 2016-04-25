@@ -174,8 +174,8 @@ namespace CardsLang
             var hostStudy = new Window();
             hostStudy.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             hostStudy.Content = _studyListsWin;
-            hostStudy.Width = 330;
-            hostStudy.Height = 310;
+            hostStudy.Width = 345;
+            hostStudy.Height = 350;
             hostStudy.Show();
             hideThisWin();
         }

@@ -135,7 +135,7 @@ namespace CardsLang
                   if (window.Content == _listControlWin)
                   {
                     host.SizeToContent = SizeToContent.Width;
-                    host.Height = 330;
+                    host.Height = 360;
                     window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                     window.Show();
                   }

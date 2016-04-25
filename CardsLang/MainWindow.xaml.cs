@@ -58,7 +58,7 @@ namespace CardsLang
             host.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             host.Content = _listControlWin;
             host.SizeToContent = SizeToContent.Width;
-            host.Height = 330;
+            host.Height = 360;
             host.Show();
             this.Close();
         }
@@ -92,8 +92,8 @@ namespace CardsLang
                 _studyListsWin = new studyLists(_lists);
                 host.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 host.Content = _studyListsWin;
-                host.Width = 300;
-                host.Height = 310;
+                host.Width = 345;
+                host.Height = 350;
                 host.Show();
                 this.Close();
             }            
