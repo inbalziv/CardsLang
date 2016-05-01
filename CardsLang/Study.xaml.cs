@@ -21,11 +21,14 @@ namespace CardsLang
     public partial class Study : Page
     {
         private int _count;
+        private int _displayCounter;
         private int _succeedCount;
         private int _totalCards;
         private bool _isRepeat;
         public bool _isFrontFirst;
-        private List<Card> _studyCards;
+        private int _progressBarCounter;
+        private bool _isRandom;
+        private List<Card> _studyCards = new List<Card>();
         private studyLists _studyListsWin;
         private AddLists _dictLists;        
         string _key;
@@ -35,20 +38,23 @@ namespace CardsLang
             _dictLists = dictLists;
             this._isFrontFirst = isFrontFirst;
             _isRepeat = isRepeat;
+            _isRandom = isRandom;
             _count = 0;
+            _progressBarCounter = 0;
             _succeedCount = 0;
+            _displayCounter = 0;
             _key = key;            
-            prepareStudy(isRandom);
+            prepareStudy();
             initialDisaply();
             study();
         }
-        private void prepareStudy(bool isRandom)
+        private void prepareStudy()
         {
             List<Card> studyCards;
             if (_dictLists.CardLists.TryGetValue(_key, out studyCards))
             {
                 _totalCards = studyCards.Count;
-                if (isRandom)
+                if (_isRandom)
                 {
                     _studyCards = createRandom(studyCards);
                 }
@@ -59,12 +65,12 @@ namespace CardsLang
         }
         private void initialDisaply()
         {
-            labelCount.Content = _count.ToString() + " out of " + _totalCards.ToString();
-            if (_totalCards > 0)
+            labelCount.Content = _displayCounter.ToString() + " out of " + _totalCards.ToString();
+            if (_displayCounter > 0)
             {
-                labelAvg.Content = "Avarage - " + _count / _totalCards * 100 + "%";
+                labelAvg.Content = "Avarage - " + (_succeedCount * 100 / _displayCounter ).ToString() + "%";
             }
-            progressBarStudy.Value = 0;
+            progressBarStudy.Value = _progressBarCounter;
             buttonCorrect.Visibility = Visibility.Hidden;
             buttonNot.Visibility = Visibility.Hidden;
             buttonNext.Visibility = Visibility.Hidden;
@@ -90,8 +96,10 @@ namespace CardsLang
                     front = _studyCards[_count]._back;
                 }
                 _count++;
+                _displayCounter++;
                 disaplyCard(front, back);
             }
+            
 
         }
         private void disaplyCard(string front, string back)
@@ -103,9 +111,10 @@ namespace CardsLang
 
 
         }
-        private List<Card> createRandom(List<Card> list)
+        private List<Card> createRandom(List<Card> oldList)
         {
-
+            
+            List<Card> list = new List<Card>(oldList.Skip(_count).Take(oldList.Count).ToList());
             int n = list.Count;
             Random rnd = new Random();
             while (n > 1)
@@ -131,16 +140,35 @@ namespace CardsLang
         private void buttonCorrect_Click(object sender, RoutedEventArgs e)
         {
             _succeedCount++;
-            progressBarStudy.Value++;
+            _progressBarCounter++;            
             disaplyGrade();
         }
 
         private void buttonNot_Click(object sender, RoutedEventArgs e)
         {
+            if (_isRepeat)
+            {
+                
+                returnCardToList(_studyCards[_count - 1]);
+              //  _count++;
+            }
+            
             disaplyGrade();
+        }
+        private void returnCardToList(Card cardReturn)
+        {
+            _totalCards++;
+            _studyCards.Add(cardReturn);
+            if (_isRandom)
+            {
+                _studyCards = createRandom(_studyCards);
+                _count = 0;
+            }
+            
         }
         private void disaplyGrade()
         {
+            double avg;
             buttonCorrect.Visibility = Visibility.Hidden;
             buttonNot.Visibility = Visibility.Hidden;
             buttonShow.Visibility = Visibility.Hidden;
@@ -148,12 +176,13 @@ namespace CardsLang
             labelAvg.Visibility = Visibility.Visible;
             labelCount.Visibility = Visibility.Visible;
             labelAvg.Content = _succeedCount.ToString();
-            labelCount.Content = _count.ToString() + " out of " + _totalCards.ToString();
-            if (_count < _totalCards)
+            labelCount.Content = _displayCounter.ToString() + " out of " + _totalCards.ToString();
+            if (_displayCounter < _totalCards)
                 buttonNext.Visibility = Visibility.Visible;
-            if (_totalCards > 0)
+            if (_displayCounter > 0)
             {
-                labelAvg.Content = "Avarage - " + _count / _totalCards * 100 + "%";
+                avg = (double)(_succeedCount * 100 / _displayCounter);
+                labelAvg.Content = "Avarage - " + avg.ToString() + "%";
             }
         }
 

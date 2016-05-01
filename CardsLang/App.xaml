@@ -5,6 +5,10 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="#FFC5C5C5"/>
+        </Style>
+        
         <Style TargetType="Label">
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontSize" Value="15" />
@@ -14,22 +18,49 @@
         <Style TargetType="ListBox">
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontSize" Value="15" />
-            <Setter Property="FontFamily" Value="Comic Sans MS"/>
-            
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>            
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <Border
+                CornerRadius="3"
+                Padding="2"
+                Background="{TemplateBinding Background}"
+                BorderBrush="Gray"
+                BorderThickness="2" >
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
+                        </Border>
+                        
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <Style TargetType="TextBox">
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontSize" Value="15" />
-            <Setter Property="FontFamily" Value="Comic Sans MS"/>
-
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>            
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                        <Border
+                CornerRadius="3"
+                Padding="2"
+                Background="{TemplateBinding Background}"
+                BorderBrush="Gray"
+                BorderThickness="2" >
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <Style TargetType="DataGrid">
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontSize" Value="15" />
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
-
+            
         </Style> 
 
         <Style TargetType="CheckBox">
@@ -51,7 +82,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="3,3,3,3" Background="LightSkyBlue" BorderBrush="DarkGray" BorderThickness="2,2,2,2" >
+                        <Border CornerRadius="3,3,3,3" Background="LightSkyBlue" BorderBrush="Gray" BorderThickness="2,2,2,2" >
                             <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Border>                       
                     </ControlTemplate>                   

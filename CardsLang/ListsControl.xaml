@@ -10,12 +10,7 @@
 
     <Grid Margin="0,0,0,0" Width="400" Height="328">
 
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Offset="0" Color="Silver"/>
-                <GradientStop Offset="1" Color="Gray"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+        
         <Button x:Name="buttonAddList" Content="Add list" HorizontalAlignment="Left" Height="27" Margin="20,23,0,0" VerticalAlignment="Top" Width="156" Click="buttonAddList_Click"/>
         <TextBox x:Name="textBoxListName" HorizontalAlignment="Left" Height="27" Margin="203,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" TextChanged="textBoxListName_TextChanged"/>
         <ListBox x:Name="listBoxLists" HorizontalAlignment="Left" Height="228" Margin="203,70,0,0" VerticalAlignment="Top" Width="164" SelectionChanged="listBoxLists_SelectionChanged"/>

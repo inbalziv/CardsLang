@@ -8,12 +8,7 @@
         Title="MainWindow" Height="336.5" Width="325" >
     <Grid Margin="0,0,0,-73">
         <Grid Margin="1,0,0,0">
-            <Grid.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Offset="0" Color="Silver"/>
-                    <GradientStop Offset="1" Color="Gray"/>
-                </LinearGradientBrush>
-            </Grid.Background>
+            
             <Button x:Name="Start" Content="Start" Margin="50,142,53,130" FontSize="20" Click="Start_Click" Width="210" Height="75"/>
             <Button x:Name="buttonStudy" Content="Study" HorizontalAlignment="Left" FontSize="20" Height="75" Margin="50,31,0,240"  Width="210" Click="buttonStudy_Click"/>
 

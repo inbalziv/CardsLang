@@ -10,12 +10,7 @@
 
     <Grid Margin="0,0,-124,-72">
         <Grid x:Name="newSubjectWin">
-            <Grid.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Offset="0" Color="Silver"/>
-                    <GradientStop Offset="1" Color="Gray"/>
-                </LinearGradientBrush>
-            </Grid.Background>
+            
             <Label x:Name="labelSubject" Content="Subject" HorizontalAlignment="Left" Height="30" Margin="15,17,0,0" VerticalAlignment="Top" Width="66" FontWeight="Bold"/>
             <TextBox x:Name="textBoxSubject" HorizontalAlignment="Left" Height="27" Margin="100,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206"/>
             <Button x:Name="buttonAddCard" Content="Add Card" HorizontalAlignment="Left" Height="27" Margin="291,60,0,0" VerticalAlignment="Top" Width="101" Click="buttonAddCard_Click"/>
@@ -26,7 +21,7 @@
             <Button x:Name="buttonDone" Content="Done" HorizontalAlignment="Left" Margin="291,335,0,0" Height="27" VerticalAlignment="Top" Width="98" RenderTransformOrigin="-0.051,0.05" Click="buttonDone_Click"/>
             <Button x:Name="buttonUpdateCard" Content="Update" HorizontalAlignment="Left" Height="27" Margin="294,139,0,0" VerticalAlignment="Top" Width="98" Click="buttonUpdateCard_Click"/>
             <DataGrid x:Name="dataGridCards" HorizontalAlignment="Left" Height="250" Margin="15,112,0,0" VerticalAlignment="Top" Width="261" SelectionChanged="dataGrid_SelectionChanged" SelectionMode="Single" SelectionUnit="FullRow"
-                      RowHeight="20" ColumnWidth="100" HeadersVisibility="All" BorderBrush="Gray" BorderThickness="5" IsReadOnly="True" CanUserReorderColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}" FontStyle="Normal" Background="LightGray">
+                      RowHeight="20" ColumnWidth="100" HeadersVisibility="All" BorderBrush="Gray" BorderThickness="2" IsReadOnly="True" CanUserReorderColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}" FontStyle="Normal" Background="LightGray">
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Front" Binding="{Binding Path=_front}" Width="0.1*"/>
