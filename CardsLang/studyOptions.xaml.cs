@@ -40,7 +40,7 @@ namespace CardsLang
             var hostStudy = new Window();
             hostStudy.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             hostStudy.Content = _studyWin;
-            hostStudy.Width = 345;
+            hostStudy.Width = 349;
             hostStudy.Height = 400;
             hostStudy.Show();
             hideThisWin();

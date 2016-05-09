@@ -71,7 +71,7 @@ namespace CardsLang
                     window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                     window.Show();
                 }
-                else window.Hide();
+                else window.Close();
             }
         }
 

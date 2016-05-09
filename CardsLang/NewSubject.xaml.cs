@@ -130,6 +130,8 @@ namespace CardsLang
               host.Content = _listControlWin;
               host.WindowStartupLocation = WindowStartupLocation.CenterScreen;
               host.Show();
+
+            
               foreach (Window window in App.Current.Windows)
               {
                   if (window.Content == _listControlWin)

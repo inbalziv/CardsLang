@@ -15,5 +15,10 @@ namespace CardsLang
     {
         // public Dictionary<string, List<Card>> _dictList { get; set; }
         public AddLists _addLists;
+        public void CloseAllWindows()
+        {
+            for (int intCounter = App.Current.Windows.Count - 1; intCounter > 0; intCounter--)
+                App.Current.Windows[intCounter].Close();
+        }
     }
 }

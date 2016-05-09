@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:CardsLang"
         mc:Ignorable="d"
         Title="MainWindow" Height="336.5" Width="325" >
-    <Grid Margin="0,0,0,-73">
-        <Grid Margin="1,0,0,0">
+    <Grid Margin="0,0,0,0">
+        <Grid Margin="0,0,0,0">
             
-            <Button x:Name="Start" Content="Start" Margin="50,142,53,130" FontSize="20" Click="Start_Click" Width="210" Height="75"/>
-            <Button x:Name="buttonStudy" Content="Study" HorizontalAlignment="Left" FontSize="20" Height="75" Margin="50,31,0,240"  Width="210" Click="buttonStudy_Click"/>
+            <Button x:Name="Start" Content="Start" Margin="50,147,48,73" FontSize="20" Click="Start_Click" Width="210" Height="75"/>
+            <Button x:Name="buttonStudy" Content="Study" HorizontalAlignment="Left" FontSize="20" Height="75" Margin="50,21,0,140"  Width="210" Click="buttonStudy_Click"/>
 
         </Grid>
 
