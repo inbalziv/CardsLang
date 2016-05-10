@@ -57,6 +57,7 @@ namespace CardsLang
                 _studyOptions = new studyOptions(_studyLists, listBoxSubjects.SelectedValue.ToString());
                 //Load window - study options
                 var hostStudy = new Window();
+                hostStudy.Closed += new EventHandler(((App)Application.Current).Window_Closing);
                 hostStudy.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 hostStudy.Content = _studyOptions;
                 hostStudy.SizeToContent = SizeToContent.Width;

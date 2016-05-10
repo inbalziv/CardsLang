@@ -21,7 +21,7 @@ namespace CardsLang
     /// Interaction logic for ListsControl.xaml
     /// </summary> 
     /// 
-    public delegate void CloseEventHandler(object sender, EventArgs e);
+   // public delegate void CloseEventHandler(object sender, EventArgs e);
 
     public partial class ListsControl : Page
     {
@@ -76,7 +76,8 @@ namespace CardsLang
         {
           //  CloseAllWindows();
             NewSubject _newSubjectWin = new NewSubject(_listsControl, listName);            
-            host.Content = _newSubjectWin;            
+            host.Content = _newSubjectWin;
+            host.Closed += new EventHandler(((App)Application.Current).Window_Closing);
             host.Width = 430;
             host.Height = 420;
             host.WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -86,6 +87,7 @@ namespace CardsLang
             textBoxListName.Clear();
             
         }
+        
         private void CloseAllWindows()
         {
             for (int intCounter = App.Current.Windows.Count - 1; intCounter > 0; intCounter--)
@@ -103,10 +105,7 @@ namespace CardsLang
                 else window.Hide();
             }
         }
-      /*  public event CloseEventHandler Closed;
-        {
-
-        } */
+      
 
         private void listBoxLists_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

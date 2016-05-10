@@ -41,11 +41,17 @@ namespace CardsLang
             textBoxSubject.Text = listName;            
             textBoxSubject.IsReadOnly = true;
             updateDataGrid();            
-            hideListsControl();            
+            hideListsControl();
+            host.Closed += new EventHandler(((App)Application.Current).Window_Closing);
 
             buttonUpdateCard.Visibility = Visibility.Hidden;
             buttonDelete.Visibility = Visibility.Hidden;
 
+        }
+        public void Window_Closing(object sender, EventArgs e)
+        {
+            App.Current.Shutdown();
+            //   e.Cancel = true;
         }
         private void updateDataGrid()
         {          

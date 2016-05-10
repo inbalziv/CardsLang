@@ -40,6 +40,7 @@ namespace CardsLang
         {
             ListsControl _listControlWin;
             var host = new Window();
+          //  host.Closed += new EventHandler(((App)Application.Current).Window_Closing);
             if (_lists == null)
             {
                 if (_cardsFile.getDictFromFile() == null)
@@ -79,6 +80,7 @@ namespace CardsLang
         {
             studyLists _studyListsWin;
             var host = new Window();
+          //  host.Closed += new EventHandler(((App)Application.Current).Window_Closing);
             if (_cardsFile.getDictFromFile() == null)
                     MessageBox.Show("No lists to study added, please add lists first", "Error");
                      

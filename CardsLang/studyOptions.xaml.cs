@@ -38,6 +38,7 @@ namespace CardsLang
             
             _studyWin = new Study(checkBoxRandom.IsChecked.Value, radioButtonFront.IsChecked.Value, checkBoxRepeat.IsChecked.Value, _dictLists, _key);            
             var hostStudy = new Window();
+           // hostStudy.Closed += new EventHandler(((App)Application.Current).Window_Closing);
             hostStudy.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             hostStudy.Content = _studyWin;
             hostStudy.Width = 349;
